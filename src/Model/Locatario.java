@@ -23,6 +23,13 @@ public class Locatario {
         return nomeCompleto;
     }
 
+    public void setNomeCompleto(String nomeCompleto) {
+        this.nomeCompleto = nomeCompleto;
+    }
+
+
+
+
     public int getId() {
         return id;
     }
@@ -30,11 +37,6 @@ public class Locatario {
     public void setId(int id) {
         this.id = id;
     }
-
-    public void setNomeCompleto(String nomeCompleto) {
-        this.nomeCompleto = nomeCompleto;
-    }
-
 
     public String getTelefone() {
         return telefone;

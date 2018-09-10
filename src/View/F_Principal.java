@@ -43,7 +43,7 @@ public class F_Principal extends javax.swing.JFrame {
         });
 
         jButton1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton1.setText("Cadastro de Locatário");
+        jButton1.setText("Gerenciar Locatários");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -51,7 +51,7 @@ public class F_Principal extends javax.swing.JFrame {
         });
 
         jButton3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton3.setText("Veículos Disponíveis");
+        jButton3.setText("Consulta de Veículos");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -68,18 +68,18 @@ public class F_Principal extends javax.swing.JFrame {
                     .addComponent(jButton3)
                     .addComponent(jButton2)
                     .addComponent(jButton1))
-                .addContainerGap(1050, Short.MAX_VALUE))
+                .addContainerGap(1179, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(66, 66, 66)
                 .addComponent(jButton1)
-                .addGap(82, 82, 82)
+                .addGap(94, 94, 94)
                 .addComponent(jButton2)
                 .addGap(88, 88, 88)
                 .addComponent(jButton3)
-                .addContainerGap(409, Short.MAX_VALUE))
+                .addContainerGap(397, Short.MAX_VALUE))
         );
 
         pack();
@@ -94,14 +94,14 @@ public class F_Principal extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        F_CadastroLocatario locatario = new F_CadastroLocatario();
-        locatario.setVisible(true);
+        F_GerenciarLocatarios gerenciar = new F_GerenciarLocatarios();
+        gerenciar.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        F_BuscaVeiculos busca = new F_BuscaVeiculos();
-        busca.setVisible(true);
+        F_ConsultaVeiculos consulta = new F_ConsultaVeiculos();
+        consulta.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

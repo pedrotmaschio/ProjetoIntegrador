@@ -68,14 +68,14 @@ public class F_EditarVeiculo extends javax.swing.JFrame {
         in_anoLancamento = new javax.swing.JFormattedTextField(mascaraAnoLancamento);
         in_anoAquisicao = new javax.swing.JFormattedTextField(mascaraAnoAquisicao);
         in_tipoComb = new javax.swing.JTextField();
-        in_quantComb = new javax.swing.JFormattedTextField(mascaraQuantCombustivel);
         in_acessorios = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         in_observacoes = new javax.swing.JTextArea();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        in_capacidadeTanque = new javax.swing.JFormattedTextField(mascaraCapaciTanque);
         jLabel15 = new javax.swing.JLabel();
+        SpinnerCapaci = new javax.swing.JSpinner();
+        SpinnerQuant = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -157,6 +157,10 @@ public class F_EditarVeiculo extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel15.setText("litros");
 
+        SpinnerCapaci.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+
+        SpinnerQuant.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -189,14 +193,14 @@ public class F_EditarVeiculo extends javax.swing.JFrame {
                                             .addComponent(in_placa, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(in_anoLancamento, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(in_quantComb, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
-                                                    .addComponent(in_capacidadeTanque))
-                                                .addGap(18, 18, 18)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(SpinnerCapaci, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                                                    .addComponent(SpinnerQuant))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(jLabel15)
                                                     .addComponent(jLabel13))))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -260,10 +264,10 @@ public class F_EditarVeiculo extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel14)
-                            .addComponent(in_capacidadeTanque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel15)
                             .addComponent(jLabel9)
-                            .addComponent(in_tipoComb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(in_tipoComb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SpinnerCapaci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel4)
@@ -283,8 +287,8 @@ public class F_EditarVeiculo extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
-                            .addComponent(in_quantComb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13)))
+                            .addComponent(jLabel13)
+                            .addComponent(SpinnerQuant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -296,7 +300,7 @@ public class F_EditarVeiculo extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
                 .addComponent(jButton1)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         pack();
@@ -319,9 +323,9 @@ public class F_EditarVeiculo extends javax.swing.JFrame {
         v.setCor(in_cor.getText());
         v.setAnoLancamento(Integer.parseInt(in_anoLancamento.getText().trim()));
         v.setAnoAquisicao(Integer.parseInt(in_anoAquisicao.getText().trim()));
-        v.setCapacidadeTanque(Double.parseDouble(in_capacidadeTanque.getText()));
+        v.setCapacidadeTanque(Double.parseDouble(SpinnerCapaci.getValue().toString()));
         v.setTipoComb(in_tipoComb.getText());
-        v.setQuantComb(Double.parseDouble(in_quantComb.getText().trim()));
+        v.setQuantComb(Double.parseDouble(SpinnerQuant.getValue().toString()));
         v.setAcessorios(in_acessorios.getText());
         v.setObservacao(in_observacoes.getText());
         veiculoDAO.editar(v);
@@ -347,9 +351,9 @@ public class F_EditarVeiculo extends javax.swing.JFrame {
         in_cor.setText(v.getCor());
         in_anoLancamento.setText(String.valueOf(v.getAnoLancamento()));
         in_anoAquisicao.setText(String.valueOf(v.getAnoAquisicao()));
-        in_capacidadeTanque.setText(String.valueOf(v.getCapacidadeTanque()));
+        SpinnerCapaci.setValue(v.getCapacidadeTanque());
         in_tipoComb.setText(v.getTipoComb());
-        in_quantComb.setText(String.valueOf(v.getQuantComb()));
+        SpinnerQuant.setValue(v.getQuantComb());
         in_acessorios.setText(v.getAcessorios());
         in_observacoes.setText(v.getObservacao());
     }
@@ -389,17 +393,17 @@ public class F_EditarVeiculo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JSpinner SpinnerCapaci;
+    private javax.swing.JSpinner SpinnerQuant;
     private javax.swing.JTextField in_Cod;
     private javax.swing.JTextField in_acessorios;
     private javax.swing.JTextField in_anoAquisicao;
     private javax.swing.JTextField in_anoLancamento;
-    private javax.swing.JTextField in_capacidadeTanque;
     private javax.swing.JTextField in_cor;
     private javax.swing.JTextField in_marca;
     private javax.swing.JTextField in_modelo;
     private javax.swing.JTextArea in_observacoes;
     private javax.swing.JTextField in_placa;
-    private javax.swing.JTextField in_quantComb;
     private javax.swing.JTextField in_tipoComb;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
