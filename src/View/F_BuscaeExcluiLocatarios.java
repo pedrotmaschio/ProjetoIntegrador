@@ -17,10 +17,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class F_BuscaeExcluiLocatarios extends javax.swing.JFrame {
     List <Locatario> locatarios;
+    LocatarioDAO locatarioDAO;
     /**
      * Creates new form F_BuscaExcluirLocatarios
      */
     public F_BuscaeExcluiLocatarios() {
+        locatarioDAO = new LocatarioDAO();
         initComponents();
     }
 
