@@ -115,7 +115,7 @@ public class LocatarioDAO {
             stmt.setInt(8, l.getId());
             stmt.executeUpdate();
             stmt.close();
-            JOptionPane.showMessageDialog(null, "Veículo editado com sucesso!");
+            JOptionPane.showMessageDialog(null, "Locatário editado com sucesso!");
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null, "Ocorreu um erro ao editar veículo!");
             throw new RuntimeException(ex);

@@ -187,7 +187,7 @@ public class F_BuscaeExcluiLocatarios extends javax.swing.JFrame {
         // TODO add your handling code here:
         int linha = t_locatarios.getSelectedRow();
         if(linha == -1)
-            JOptionPane.showMessageDialog(null, "Primeiro, selecione um veículo.");
+            JOptionPane.showMessageDialog(null, "Primeiro, selecione um locatário.");
         else {
             if(JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir este locatário?") == JOptionPane.OK_OPTION){
                 LocatarioDAO locatarioDAO = new LocatarioDAO();

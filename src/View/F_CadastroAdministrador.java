@@ -5,17 +5,33 @@
  */
 package View;
 
+import Model.Administrador;
+import DAO.AdministradorDAO;
+import javax.swing.JOptionPane;
+import javax.swing.text.MaskFormatter;
+
 /**
  *
  * @author Pedro Maschio
  */
 public class F_CadastroAdministrador extends javax.swing.JFrame {
-
+    AdministradorDAO administradorDAO;
+    
+    public void mascaraCampos(){
+        try {
+            MaskFormatter mascaraNascimento = new MaskFormatter("##/##/####");
+            mascaraNascimento.install(f_nascimento);
+        }catch(Exception ex){
+            throw new RuntimeException(ex);
+        }
+    }
     /**
      * Creates new form CadastroLocatario
      */
     public F_CadastroAdministrador() {
         initComponents();
+        mascaraCampos();
+        administradorDAO = new AdministradorDAO();
     }
 
     /**
@@ -38,12 +54,12 @@ public class F_CadastroAdministrador extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         f_nome = new javax.swing.JTextField();
         f_cnpj = new javax.swing.JTextField();
-        f_nascimento = new javax.swing.JTextField();
         f_nomeCompanhia = new javax.swing.JTextField();
         f_endereco = new javax.swing.JTextField();
         f_email = new javax.swing.JTextField();
         f_senha = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
+        f_nascimento = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -78,8 +94,6 @@ public class F_CadastroAdministrador extends javax.swing.JFrame {
 
         f_cnpj.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
-        f_nascimento.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-
         f_nomeCompanhia.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         f_endereco.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -91,6 +105,11 @@ public class F_CadastroAdministrador extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(0, 153, 153));
         jButton1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton1.setText("CADASTRAR ADMINISTRADOR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -107,14 +126,15 @@ public class F_CadastroAdministrador extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(jLabel9))
                 .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(f_nome, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
-                    .addComponent(f_cnpj)
-                    .addComponent(f_nomeCompanhia)
-                    .addComponent(f_endereco)
-                    .addComponent(f_email)
-                    .addComponent(f_nascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(f_senha, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(f_nome, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
+                        .addComponent(f_cnpj)
+                        .addComponent(f_nomeCompanhia)
+                        .addComponent(f_endereco)
+                        .addComponent(f_email)
+                        .addComponent(f_senha, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(f_nascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(210, Short.MAX_VALUE)
@@ -164,7 +184,7 @@ public class F_CadastroAdministrador extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(f_senha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(28, 28, 28))
         );
@@ -172,6 +192,23 @@ public class F_CadastroAdministrador extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Administrador a = new Administrador();
+        a.setNome(f_nome.getText().trim());
+        a.setNascimento(f_nascimento.getText().trim());
+        a.setCNPJ(f_cnpj.getText().trim());
+        a.setNomeCompanhia(f_nomeCompanhia.getText().trim());
+        a.setEnderecoCompanhia(f_endereco.getText().trim());
+        a.setEmail(f_email.getText().trim());
+        String senha = new String(f_senha.getPassword());
+        a.setSenha(senha);
+        
+        administradorDAO.cadastro(a);
+        JOptionPane.showMessageDialog(null, "Administrador cadastrado com sucesso!");
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -213,7 +250,7 @@ public class F_CadastroAdministrador extends javax.swing.JFrame {
     private javax.swing.JTextField f_cnpj;
     private javax.swing.JTextField f_email;
     private javax.swing.JTextField f_endereco;
-    private javax.swing.JTextField f_nascimento;
+    private javax.swing.JFormattedTextField f_nascimento;
     private javax.swing.JTextField f_nome;
     private javax.swing.JTextField f_nomeCompanhia;
     private javax.swing.JPasswordField f_senha;
