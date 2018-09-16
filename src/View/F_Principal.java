@@ -15,8 +15,9 @@ public class F_Principal extends javax.swing.JFrame {
      * Creates new form F_Principal
      */
     public F_Principal() {
-        initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
+        initComponents();
+        
     }
 
     /**
@@ -31,8 +32,10 @@ public class F_Principal extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1200, 720));
 
         jButton2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton2.setText("Cadastro de Veículo");
@@ -51,10 +54,18 @@ public class F_Principal extends javax.swing.JFrame {
         });
 
         jButton3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton3.setText("Consulta de Veículos");
+        jButton3.setText("Veículos Disponíveis");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton4.setText("Veículos Locados");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
             }
         });
 
@@ -65,9 +76,11 @@ public class F_Principal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3)
                     .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(1179, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -79,10 +92,12 @@ public class F_Principal extends javax.swing.JFrame {
                 .addComponent(jButton2)
                 .addGap(88, 88, 88)
                 .addComponent(jButton3)
-                .addContainerGap(397, Short.MAX_VALUE))
+                .addGap(100, 100, 100)
+                .addComponent(jButton4)
+                .addContainerGap(272, Short.MAX_VALUE))
         );
 
-        pack();
+        setBounds(0, 0, 1417, 759);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -100,9 +115,15 @@ public class F_Principal extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        F_ConsultaVeiculos consulta = new F_ConsultaVeiculos();
+        F_ConsultaVeiculosDisponiveis consulta = new F_ConsultaVeiculosDisponiveis();
         consulta.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        F_ConsultaVeiculosLocados locados = new F_ConsultaVeiculosLocados();
+        locados.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -143,5 +164,6 @@ public class F_Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,26 +4,25 @@
  * and open the template in the editor.
  */
 package View;
+
 import DAO.VeiculoDAO;
 import Model.Veiculo;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
+
 /**
  *
  * @author Pedro Maschio
  */
-public class F_ConsultaVeiculos extends javax.swing.JFrame {
-    List <Veiculo> veiculos;
+public class F_ConsultaVeiculosLocados extends javax.swing.JFrame {
+    List<Veiculo> veiculos;
     DefaultTableModel tabela;
-   /**
-     * Creates new form F_BuscaVeiculos
+    /**
+     * Creates new form F_ConsultaVeiculosLocados
      */
-    public F_ConsultaVeiculos() {
+    public F_ConsultaVeiculosLocados() {
         initComponents();
-        tabela = (DefaultTableModel) t_veiculos.getModel();
-        tabela.setRowCount(0);
     }
 
     /**
@@ -35,27 +34,29 @@ public class F_ConsultaVeiculos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        f_busca = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel5 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        Combo_Busca = new javax.swing.JComboBox<>();
+        f_busca = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         t_veiculos = new javax.swing.JTable();
-        jLabel6 = new javax.swing.JLabel();
-        Combo_Busca = new javax.swing.JComboBox<>();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
-        Combo_DisLoc = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(900, 700));
-        setResizable(false);
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel1.setText("Consulta de Veículos");
+        jButton3.setText("Excluir Veículo");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButton1.setText("Buscar");
@@ -65,14 +66,30 @@ public class F_ConsultaVeiculos extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Editar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel1.setText("Consulta de Veículos");
+
+        jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel2.setText("Buscar veículos ");
+
+        Combo_Busca.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        Combo_Busca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Marca", "Modelo", "Cor", "Ano de Lançamento" }));
+
         f_busca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 f_buscaActionPerformed(evt);
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel5.setText("Resultados");
+        jLabel6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel6.setText("por");
 
         t_veiculos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -101,47 +118,11 @@ public class F_ConsultaVeiculos extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(t_veiculos);
-        if (t_veiculos.getColumnModel().getColumnCount() > 0) {
-            t_veiculos.getColumnModel().getColumn(0).setResizable(false);
-            t_veiculos.getColumnModel().getColumn(1).setResizable(false);
-            t_veiculos.getColumnModel().getColumn(2).setResizable(false);
-            t_veiculos.getColumnModel().getColumn(3).setResizable(false);
-            t_veiculos.getColumnModel().getColumn(4).setResizable(false);
-            t_veiculos.getColumnModel().getColumn(5).setResizable(false);
-            t_veiculos.getColumnModel().getColumn(6).setResizable(false);
-        }
 
-        jLabel6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel6.setText("por");
+        jLabel5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel5.setText("Resultados");
 
-        Combo_Busca.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        Combo_Busca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Marca", "Modelo", "Cor", "Ano de Lançamento" }));
-
-        jButton2.setText("Editar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jButton3.setText("Excluir Veículo");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
-        jButton4.setText("Retirar Veículo");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
-        Combo_DisLoc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponíveis", "Locados" }));
-
-        jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel2.setText("Buscar veículos ");
+        jButton4.setText("Devolver Veículo");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -156,23 +137,21 @@ public class F_ConsultaVeiculos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Combo_DisLoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(f_busca, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14)
-                .addComponent(jLabel6)
                 .addGap(18, 18, 18)
-                .addComponent(Combo_Busca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(f_busca, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Combo_Busca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton4)
-                        .addGap(18, 18, 18)
+                        .addGap(42, 42, 42)
                         .addComponent(jButton2)
                         .addGap(26, 26, 26)
                         .addComponent(jButton3)
@@ -192,7 +171,6 @@ public class F_ConsultaVeiculos extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(Combo_Busca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1)
-                    .addComponent(Combo_DisLoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addComponent(jLabel5)
@@ -202,45 +180,52 @@ public class F_ConsultaVeiculos extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
                     .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addContainerGap(46, Short.MAX_VALUE))
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void f_buscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_f_buscaActionPerformed
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_f_buscaActionPerformed
+        int linha = t_veiculos.getSelectedRow();
+        if(linha == -1)
+        JOptionPane.showMessageDialog(null, "Primeiro, selecione um veículo.");
+        else {
+            if(JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir este veículo?") == JOptionPane.OK_OPTION){
+                VeiculoDAO veiculoDAO = new VeiculoDAO();
+                DefaultTableModel tabela = (DefaultTableModel) t_veiculos.getModel();
+                int id = (int) tabela.getValueAt(linha, 0);
+                veiculoDAO.excluir(id);
+                tabela.setRowCount(0);
+            }
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         veiculos = null;
         boolean locado;
         int valor;
-        
+
         tabela = (DefaultTableModel) t_veiculos.getModel();
         tabela.setRowCount(0);
-        
+
         VeiculoDAO veiculo = new VeiculoDAO();
-        
+
         valor = Combo_Busca.getSelectedIndex();
-        if(Combo_DisLoc.getSelectedIndex() == 0)
-            locado = false;
-        else {
-            locado = true;
-        }
-        
-        veiculos = veiculo.buscar(valor, f_busca.getText().trim(), locado);
+
+        veiculos = veiculo.buscar(valor, f_busca.getText().trim(), true);
         for(int i = 0; i < veiculos.size(); i++){
             Veiculo v = new Veiculo();
             v = veiculos.get(i);
             tabela.addRow(new Object[] {v.getId(), v.getMarca(), v.getModelo(), v.getPlaca(), v.getCor(), v.getAnoLancamento(), v.getAcessorios()});
         }
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -258,27 +243,9 @@ public class F_ConsultaVeiculos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void f_buscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_f_buscaActionPerformed
         // TODO add your handling code here:
-        int linha = t_veiculos.getSelectedRow();
-        if(linha == -1)
-            JOptionPane.showMessageDialog(null, "Primeiro, selecione um veículo.");
-        else {
-            if(JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir este veículo?") == JOptionPane.OK_OPTION){
-                VeiculoDAO veiculoDAO = new VeiculoDAO();
-                DefaultTableModel tabela = (DefaultTableModel) t_veiculos.getModel();
-                int id = (int) tabela.getValueAt(linha, 0);
-                veiculoDAO.excluir(id);
-                tabela.setRowCount(0);
-            }
-        }
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        F_BuscaLocatarios buscaLocatarios = new F_BuscaLocatarios();
-        buscaLocatarios.setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_f_buscaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -297,28 +264,26 @@ public class F_ConsultaVeiculos extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(F_ConsultaVeiculos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(F_ConsultaVeiculosLocados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(F_ConsultaVeiculos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(F_ConsultaVeiculosLocados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(F_ConsultaVeiculos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(F_ConsultaVeiculosLocados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(F_ConsultaVeiculos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(F_ConsultaVeiculosLocados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new F_ConsultaVeiculos().setVisible(true);
+                new F_ConsultaVeiculosLocados().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> Combo_Busca;
-    private javax.swing.JComboBox<String> Combo_DisLoc;
     private javax.swing.JTextField f_busca;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

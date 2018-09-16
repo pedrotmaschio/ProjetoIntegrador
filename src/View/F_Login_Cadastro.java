@@ -46,6 +46,7 @@ public class F_Login_Cadastro extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Faça Login ou Cadastre-se");
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setText("Bem Vindo ao Rent Car ");
@@ -174,7 +175,7 @@ public class F_Login_Cadastro extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         if(!validar(f_email.getText())){
-            JOptionPane.showMessageDialog(null, "E-mail ou senha inválidos!");
+            JOptionPane.showMessageDialog(null, "Informe um e-mail válido!");
         } else {
             
             String senha = new String (f_senha.getPassword());
