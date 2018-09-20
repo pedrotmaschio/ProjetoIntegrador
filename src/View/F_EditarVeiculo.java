@@ -125,6 +125,7 @@ public class F_EditarVeiculo extends javax.swing.JFrame {
 
         in_Cod.setEditable(false);
         in_Cod.setBackground(new java.awt.Color(204, 204, 204));
+        in_Cod.setFocusable(false);
 
         in_marca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -115,6 +115,8 @@ public class F_BuscaeExcluiLocatarios extends javax.swing.JFrame {
 
         jLabel3.setText("Código do Administrador:");
 
+        f_codAdmin.setEditable(false);
+        f_codAdmin.setFocusable(false);
         f_codAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 f_codAdminActionPerformed(evt);
@@ -146,8 +148,8 @@ public class F_BuscaeExcluiLocatarios extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(f_codAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
+                        .addComponent(f_codAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(60, 60, 60)
                         .addComponent(jLabel1)))
                 .addContainerGap(53, Short.MAX_VALUE))
         );
