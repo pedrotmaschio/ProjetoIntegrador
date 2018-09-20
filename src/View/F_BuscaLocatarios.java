@@ -43,6 +43,8 @@ public class F_BuscaLocatarios extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         f_idVeiculo = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        f_codAdmin = new javax.swing.JTextField();
+        jLabel30 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -113,6 +115,13 @@ public class F_BuscaLocatarios extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel3.setText("Código Veículo Selecionado:");
 
+        f_codAdmin.setEditable(false);
+        f_codAdmin.setBackground(new java.awt.Color(204, 204, 204));
+        f_codAdmin.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        f_codAdmin.setFocusable(false);
+
+        jLabel30.setText("Código do Administrador:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -131,7 +140,11 @@ public class F_BuscaLocatarios extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton1))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(248, 248, 248)
+                                .addContainerGap()
+                                .addComponent(jLabel30)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(f_codAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(71, 71, 71)
                                 .addComponent(jLabel1)))
                         .addGap(0, 122, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -151,7 +164,10 @@ public class F_BuscaLocatarios extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel30)
+                            .addComponent(f_codAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(f_busca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -181,7 +197,8 @@ public class F_BuscaLocatarios extends javax.swing.JFrame {
         DefaultTableModel tabela = (DefaultTableModel) t_locatarios.getModel();
         tabela.setNumRows(0);
         
-        locatarios = locatarioDAO.buscar(f_busca.getText().trim());
+        int idAdmin = Integer.parseInt(f_codAdmin.getText());
+        locatarios = locatarioDAO.buscar(f_busca.getText().trim(), idAdmin);
         for(int i=0; i<locatarios.size(); i++){
             Locatario l = new Locatario();
             l = locatarios.get(i);
@@ -209,7 +226,8 @@ public class F_BuscaLocatarios extends javax.swing.JFrame {
             locacao.setVisible(true);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
-    public void preencheId(int id){
+    public void preencheId(int id, int idAdmin){
+        f_codAdmin.setText(String.valueOf(idAdmin));
         f_idVeiculo.setText(String.valueOf(id));
     }
     /**
@@ -249,12 +267,14 @@ public class F_BuscaLocatarios extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField f_busca;
+    private javax.swing.JTextField f_codAdmin;
     private javax.swing.JLabel f_idVeiculo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable t_locatarios;

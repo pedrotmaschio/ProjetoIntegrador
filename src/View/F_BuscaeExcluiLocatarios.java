@@ -44,6 +44,8 @@ public class F_BuscaeExcluiLocatarios extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        f_codAdmin = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -111,12 +113,26 @@ public class F_BuscaeExcluiLocatarios extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setText("Código do Administrador:");
+
+        f_codAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                f_codAdminActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1)
             .addComponent(jScrollPane1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton3)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addGap(32, 32, 32))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -127,22 +143,23 @@ public class F_BuscaeExcluiLocatarios extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(248, 248, 248)
+                        .addContainerGap()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(f_codAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
                         .addComponent(jLabel1)))
                 .addContainerGap(53, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addGap(32, 32, 32))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel1)
-                .addGap(50, 50, 50)
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(f_codAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(f_busca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
@@ -165,7 +182,9 @@ public class F_BuscaeExcluiLocatarios extends javax.swing.JFrame {
     private void f_buscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_f_buscaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_f_buscaActionPerformed
-
+    public void preencheIdAdmin(int codAdmin){
+        f_codAdmin.setText(String.valueOf(codAdmin));
+    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         locatarios = null;
@@ -174,7 +193,8 @@ public class F_BuscaeExcluiLocatarios extends javax.swing.JFrame {
         DefaultTableModel tabela = (DefaultTableModel) t_locatarios.getModel();
         tabela.setNumRows(0);
 
-        locatarios = locatarioDAO.buscar(f_busca.getText().trim());
+        int idAdmin = Integer.parseInt(f_codAdmin.getText());
+        locatarios = locatarioDAO.buscar(f_busca.getText().trim(), idAdmin);
         for(int i=0; i<locatarios.size(); i++){
             Locatario l = new Locatario();
             l = locatarios.get(i);
@@ -193,7 +213,9 @@ public class F_BuscaeExcluiLocatarios extends javax.swing.JFrame {
                 LocatarioDAO locatarioDAO = new LocatarioDAO();
                 DefaultTableModel tabela = (DefaultTableModel) t_locatarios.getModel();
                 int id = (int) tabela.getValueAt(linha, 0);
-                locatarioDAO.excluir(id);
+                
+                int idAdmin = Integer.parseInt(f_codAdmin.getText());
+                locatarioDAO.excluir(id, idAdmin);
                 tabela.setRowCount(0);
             }
         }
@@ -208,11 +230,17 @@ public class F_BuscaeExcluiLocatarios extends javax.swing.JFrame {
             DefaultTableModel tabela = (DefaultTableModel) t_locatarios.getModel();
             int id = (int) tabela.getValueAt(linha, 0);
             F_EditarLocatario editar = new F_EditarLocatario();
-            editar.preencheCampos(id);
+            
+            int idAdmin = Integer.parseInt(f_codAdmin.getText());
+            editar.preencheCampos(id, idAdmin);
             editar.setVisible(true);
             tabela.setRowCount(0);
         }        // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void f_codAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_f_codAdminActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_f_codAdminActionPerformed
 
     /**
      * @param args the command line arguments
@@ -252,11 +280,13 @@ public class F_BuscaeExcluiLocatarios extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField f_busca;
+    private javax.swing.JTextField f_codAdmin;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable t_locatarios;

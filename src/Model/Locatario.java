@@ -11,6 +11,7 @@ package Model;
  */
 public class Locatario {
     private int id;
+    private int idAdmin;
     private String nomeCompleto;
     private String nascimento;
     private String cnh;
@@ -18,6 +19,14 @@ public class Locatario {
     private String endereco;
     private String email;
     private String telefone;
+
+    public int getIdAdmin() {
+        return idAdmin;
+    }
+
+    public void setIdAdmin(int idAdmin) {
+        this.idAdmin = idAdmin;
+    }
 
     public String getNomeCompleto() {
         return nomeCompleto;

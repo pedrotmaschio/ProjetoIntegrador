@@ -179,9 +179,10 @@ public class F_Login_Cadastro extends javax.swing.JFrame {
         } else {
             
             String senha = new String (f_senha.getPassword());
-            if(adminDAO.buscaEmail(f_email.getText()) && adminDAO.buscaSenha(senha)){
+            if(adminDAO.buscaEmail(f_email.getText().trim()) && (adminDAO.buscaSenha(senha))){
+                int idAdmin = adminDAO.buscaId(f_email.getText().trim());
                 dispose();
-                F_Principal f_principal = new F_Principal();
+                F_Principal f_principal = new F_Principal(idAdmin);
                 f_principal.setVisible(true);
             } else if(adminDAO.buscaEmail(f_email.getText())){
                 JOptionPane.showMessageDialog(null, "Sua senha está incorreta!");

@@ -65,6 +65,8 @@ public class F_CadastroLocatario extends javax.swing.JFrame {
         f_nascimento = new javax.swing.JFormattedTextField(mascaraNascimento);
         jLabel9 = new javax.swing.JLabel();
         f_telefone = new javax.swing.JFormattedTextField(mascaraTelefone);
+        f_codAdmin = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -127,6 +129,16 @@ public class F_CadastroLocatario extends javax.swing.JFrame {
 
         f_telefone.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
+        f_codAdmin.setEditable(false);
+        f_codAdmin.setFocusable(false);
+        f_codAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                f_codAdminActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setText("Código do Administrador:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -167,12 +179,16 @@ public class F_CadastroLocatario extends javax.swing.JFrame {
                             .addComponent(f_endereco))
                         .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(36, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addGap(288, 288, 288))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(f_codAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
                         .addComponent(jLabel1)
                         .addGap(229, 229, 229))))
         );
@@ -180,7 +196,11 @@ public class F_CadastroLocatario extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel11)
+                        .addComponent(f_codAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1))
                 .addGap(59, 59, 59)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -223,7 +243,9 @@ public class F_CadastroLocatario extends javax.swing.JFrame {
     private void f_cnhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_f_cnhActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_f_cnhActionPerformed
-
+    public void preencheIdAdmin(int idAdmin){
+        f_codAdmin.setText(String.valueOf(idAdmin));
+    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         Locatario locatario = new Locatario();
@@ -236,7 +258,7 @@ public class F_CadastroLocatario extends javax.swing.JFrame {
         locatario.setEndereco(f_endereco.getText());
         locatario.setEmail(f_email.getText());
         locatario.setTelefone(f_telefone.getText());
-        
+        locatario.setIdAdmin(Integer.parseInt(f_codAdmin.getText()));
         LocatarioDAO l = new LocatarioDAO();
         l.create(locatario);
         setVisible(false);
@@ -246,6 +268,10 @@ public class F_CadastroLocatario extends javax.swing.JFrame {
         // TODO add your handling code here:
     
     }//GEN-LAST:event_f_cpfActionPerformed
+
+    private void f_codAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_f_codAdminActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_f_codAdminActionPerformed
 
     /**
      * @param args the command line arguments
@@ -284,6 +310,7 @@ public class F_CadastroLocatario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField f_cnh;
+    private javax.swing.JTextField f_codAdmin;
     private javax.swing.JFormattedTextField f_cpf;
     private javax.swing.JTextField f_email;
     private javax.swing.JTextField f_endereco;
@@ -293,6 +320,7 @@ public class F_CadastroLocatario extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField f_telefone;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

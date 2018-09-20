@@ -10,14 +10,16 @@ package View;
  * @author Pedro Maschio
  */
 public class F_Principal extends javax.swing.JFrame {
-
+    static int idAdmin;
     /**
      * Creates new form F_Principal
      */
-    public F_Principal() {
+    public F_Principal(int idAdmin) {
         this.setExtendedState(MAXIMIZED_BOTH);
         initComponents();
-        
+        f_codAdmin.setText(String.valueOf(idAdmin));
+        this.idAdmin = idAdmin;
+
     }
 
     /**
@@ -33,6 +35,10 @@ public class F_Principal extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        f_codAdmin = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1200, 720));
@@ -69,24 +75,56 @@ public class F_Principal extends javax.swing.JFrame {
             }
         });
 
+        f_codAdmin.setText(String.valueOf(idAdmin));
+        f_codAdmin.setEditable(false);
+        f_codAdmin.setBackground(new java.awt.Color(204, 204, 204));
+        f_codAdmin.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        f_codAdmin.setFocusable(false);
+        f_codAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                f_codAdminActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Código do Administrador:");
+
+        jMenu1.setText("Sair");
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(1179, Short.MAX_VALUE))
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jButton2)
+                        .addComponent(jButton1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(f_codAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(1130, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(66, 66, 66)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(f_codAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(26, 26, 26)
                 .addComponent(jButton1)
                 .addGap(94, 94, 94)
                 .addComponent(jButton2)
@@ -94,7 +132,7 @@ public class F_Principal extends javax.swing.JFrame {
                 .addComponent(jButton3)
                 .addGap(100, 100, 100)
                 .addComponent(jButton4)
-                .addContainerGap(272, Short.MAX_VALUE))
+                .addContainerGap(250, Short.MAX_VALUE))
         );
 
         setBounds(0, 0, 1417, 759);
@@ -103,6 +141,7 @@ public class F_Principal extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         F_CadastroVeiculo cadastroVeiculo = new F_CadastroVeiculo();
+        cadastroVeiculo.preencher(Integer.parseInt(f_codAdmin.getText().trim()));
         cadastroVeiculo.setVisible(true);
         
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -110,20 +149,32 @@ public class F_Principal extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         F_GerenciarLocatarios gerenciar = new F_GerenciarLocatarios();
+        gerenciar.preencheIdAdmin(Integer.parseInt(f_codAdmin.getText()));
         gerenciar.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         F_ConsultaVeiculosDisponiveis consulta = new F_ConsultaVeiculosDisponiveis();
+        consulta.preencheAdmin(Integer.parseInt(f_codAdmin.getText()));
         consulta.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         F_ConsultaVeiculosLocados locados = new F_ConsultaVeiculosLocados();
+        locados.preencheAdmin(Integer.parseInt(f_codAdmin.getText()));
         locados.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void f_codAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_f_codAdminActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_f_codAdminActionPerformed
+
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jMenu1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -151,19 +202,24 @@ public class F_Principal extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(F_Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new F_Principal().setVisible(true);
+                
+                new F_Principal(idAdmin).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField f_codAdmin;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
 }

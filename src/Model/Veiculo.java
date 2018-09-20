@@ -11,6 +11,7 @@ package Model;
  */
 public class Veiculo {
     private int id;
+    private int idAdmin;
     private String marca;
     private String modelo;
     private String placa;
@@ -20,7 +21,18 @@ public class Veiculo {
     private String tipoComb;
     private double quantComb;
     private double capacidadeTanque;
+    private String acessorios;
+    private String observacao;
+    private boolean locado = false;
 
+    public int getIdAdmin() {
+        return idAdmin;
+    }
+
+    public void setIdAdmin(int idAdmin) {
+        this.idAdmin = idAdmin;
+    }
+    
     public double getCapacidadeTanque() {
         return capacidadeTanque;
     }
@@ -28,9 +40,7 @@ public class Veiculo {
     public void setCapacidadeTanque(double capacidadeTanque) {
         this.capacidadeTanque = capacidadeTanque;
     }
-    private String acessorios;
-    private String observacao;
-    private boolean locado = false;
+
 
     public String getMarca() {
         return marca;

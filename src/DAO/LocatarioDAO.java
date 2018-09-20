@@ -24,14 +24,15 @@ public class LocatarioDAO {
     
     public void create(Locatario l){
         try {
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO t_locatario(nomeCompleto, dataNasc, cnh, endereco, email, telefone, cpf) VALUES(?,?,?,?,?,?,?);");
-            stmt.setString(1, l.getNomeCompleto());
-            stmt.setString(2, l.getNascimento());
-            stmt.setString(3, l.getCnh());
-            stmt.setString(4, l.getEndereco());
-            stmt.setString(5, l.getEmail());
-            stmt.setString(6, l.getTelefone());
-            stmt.setString(7, l.getCpf());
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO t_locatario(idAdmin, nomeCompleto, dataNasc, cnh, endereco, email, telefone, cpf) VALUES(?,?,?,?,?,?,?,?);");
+            stmt.setInt(1, l.getIdAdmin());
+            stmt.setString(2, l.getNomeCompleto());
+            stmt.setString(3, l.getNascimento());
+            stmt.setString(4, l.getCnh());
+            stmt.setString(5, l.getEndereco());
+            stmt.setString(6, l.getEmail());
+            stmt.setString(7, l.getTelefone());
+            stmt.setString(8, l.getCpf());
             stmt.executeUpdate();
             stmt.close();
             
@@ -41,15 +42,18 @@ public class LocatarioDAO {
             throw new RuntimeException(ex);
         }
     }
-    public List<Locatario> buscar(String nome){
+    public List<Locatario> buscar(String nome, int idAdmin){
         List<Locatario> locatarios = new ArrayList<>();
         try {
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM t_locatario WHERE nomeCompleto LIKE ?;");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM t_locatario WHERE nomeCompleto LIKE ? AND t_locatario.idAdmin = ?;");
             stmt.setString(1, nome+"%");
+            stmt.setInt(2, idAdmin);
+            
             ResultSet rs = stmt.executeQuery();
             while(rs.next()){
                 Locatario locatario = new Locatario();
                 locatario.setCnh(rs.getString("cnh"));
+                locatario.setIdAdmin(rs.getInt("idAdmin"));
                 locatario.setEmail(rs.getString("email"));
                 locatario.setEndereco(rs.getString("endereco"));
                 locatario.setNascimento(rs.getString("dataNasc"));
@@ -67,14 +71,16 @@ public class LocatarioDAO {
         return locatarios;
     }
     
-       public Locatario buscar(int id){
+       public Locatario buscar(int id, int idAdmin){
         Locatario l = new Locatario();
         try {    
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM t_locatario WHERE id = ?;");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM t_locatario WHERE id = ? AND t_locatario.idAdmin = ?;");
             stmt.setInt(1, id);  
+            stmt.setInt(2, idAdmin);
             ResultSet rs = stmt.executeQuery();
             while(rs.next()){
                 l.setCnh(rs.getString("cnh"));
+                l.setIdAdmin(rs.getInt("idAdmin"));
                 l.setEmail(rs.getString("email"));
                 l.setEndereco(rs.getString("endereco"));
                 l.setNascimento(rs.getString("dataNasc"));
@@ -90,10 +96,12 @@ public class LocatarioDAO {
          }
          return l;
     }
-    public void excluir(int id){
+    public void excluir(int id, int idAdmin){
         try {
-            PreparedStatement stmt = conn.prepareStatement("DELETE FROM t_locatario WHERE id=?;");
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM t_locatario WHERE id=? AND t_locatario.idAdmin = ?;");
             stmt.setInt(1, id);
+            stmt.setInt(2, idAdmin);
+            
             stmt.executeUpdate();
             stmt.close();
         }catch(Exception ex){
@@ -104,7 +112,7 @@ public class LocatarioDAO {
        public void editar(Locatario l){
         try {
             
-            PreparedStatement stmt = conn.prepareStatement("UPDATE t_locatario SET nomeCompleto=?,dataNasc=?,cnh=?,endereco=?,email=?,cpf=?,telefone=? WHERE id=?;");
+            PreparedStatement stmt = conn.prepareStatement("UPDATE t_locatario SET nomeCompleto=?,dataNasc=?,cnh=?,endereco=?,email=?,cpf=?,telefone=? WHERE id=? AND t_locatario.idAdmin = ?;");
             stmt.setString(1, l.getNomeCompleto());
             stmt.setString(2, l.getNascimento());
             stmt.setString(3, l.getCnh());
@@ -113,9 +121,10 @@ public class LocatarioDAO {
             stmt.setString(6, l.getCpf());
             stmt.setString(7, l.getTelefone());
             stmt.setInt(8, l.getId());
+            stmt.setInt(9, l.getIdAdmin());
             stmt.executeUpdate();
             stmt.close();
-            JOptionPane.showMessageDialog(null, "Locatário editado com sucesso!");
+
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null, "Ocorreu um erro ao editar veículo!");
             throw new RuntimeException(ex);

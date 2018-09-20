@@ -26,20 +26,20 @@ public class VeiculoDAO {
     
     public void create(Veiculo v) {
         try {
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO t_veiculo(marca, modelo, placa, cor, anoLancamento, anoAquisicao, capacidadeTanque, tipoCombustivel, quantCombustivel, acessorios, observacao, locado) VALUES(?,?,?,?,?,?,?,?,?,?,?,?);");
-            
-            stmt.setString(1, v.getMarca());
-            stmt.setString(2, v.getModelo());
-            stmt.setString(3, v.getPlaca());
-            stmt.setString(4, v.getCor());
-            stmt.setInt(5, v.getAnoLancamento());
-            stmt.setInt(6, v.getAnoAquisicao());
-            stmt.setDouble(7,v.getCapacidadeTanque());
-            stmt.setString(8, v.getTipoComb());
-            stmt.setDouble(9, v.getQuantComb());
-            stmt.setString(10, v.getAcessorios());
-            stmt.setString(11, v.getObservacao());
-            stmt.setBoolean(12, v.isLocado());
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO t_veiculo(idAdmin, marca, modelo, placa, cor, anoLancamento, anoAquisicao, capacidadeTanque, tipoCombustivel, quantCombustivel, acessorios, observacao, locado) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?);");
+            stmt.setInt(1, v.getIdAdmin());
+            stmt.setString(2, v.getMarca());
+            stmt.setString(3, v.getModelo());
+            stmt.setString(4, v.getPlaca());
+            stmt.setString(5, v.getCor());
+            stmt.setInt(6, v.getAnoLancamento());
+            stmt.setInt(7, v.getAnoAquisicao());
+            stmt.setDouble(8,v.getCapacidadeTanque());
+            stmt.setString(9, v.getTipoComb());
+            stmt.setDouble(10, v.getQuantComb());
+            stmt.setString(11, v.getAcessorios());
+            stmt.setString(12, v.getObservacao());
+            stmt.setBoolean(13, v.isLocado());
             stmt.executeUpdate();
             stmt.close();
             
@@ -49,17 +49,19 @@ public class VeiculoDAO {
             throw new RuntimeException(ex);
         }
     }
-    public List<Veiculo> buscar(int valor, String busca, boolean locado){
+    public List<Veiculo> buscar(int valor, String busca, boolean locado, int idAdmin){
          List<Veiculo> veiculos = new ArrayList<>();
          try {
             if(valor ==0){
-                PreparedStatement stmt = conn.prepareStatement("SELECT * FROM t_veiculo WHERE marca LIKE ? and locado=?;");
+                PreparedStatement stmt = conn.prepareStatement("SELECT * FROM t_veiculo WHERE marca LIKE ? AND locado=? AND t_veiculo.idAdmin = ?;");
                 stmt.setString(1, busca+"%");  
                 stmt.setBoolean(2, locado);
+                stmt.setInt(3, idAdmin);
                 ResultSet rs = stmt.executeQuery();
                 while(rs.next()){
                     Veiculo v = new Veiculo();
                     v.setId(rs.getInt("id"));
+                    v.setIdAdmin(rs.getInt("idAdmin"));
                     v.setMarca(rs.getString("marca"));
                     v.setModelo(rs.getString("modelo"));
                     v.setPlaca(rs.getString("placa"));
@@ -76,14 +78,16 @@ public class VeiculoDAO {
              }
              stmt.close();
             } else if(valor == 1){
-                PreparedStatement stmt = conn.prepareStatement("SELECT * FROM t_veiculo WHERE modelo LIKE ? and locado=?;");
+                PreparedStatement stmt = conn.prepareStatement("SELECT * FROM t_veiculo WHERE marca LIKE ? AND locado=? AND t_veiculo.idAdmin = ?;");
                 stmt.setString(1, busca+"%");
                 stmt.setBoolean(2, locado);
+                stmt.setInt(3, idAdmin);
                 
                 ResultSet rs = stmt.executeQuery();
                 while(rs.next()){
                     Veiculo v = new Veiculo();
                     v.setId(rs.getInt("id"));
+                    v.setIdAdmin(rs.getInt("idAdmin"));
                     v.setMarca(rs.getString("marca"));
                     v.setModelo(rs.getString("modelo"));
                     v.setPlaca(rs.getString("placa"));
@@ -100,14 +104,16 @@ public class VeiculoDAO {
              }
              stmt.close();
             }else if(valor == 2){
-                PreparedStatement stmt = conn.prepareStatement("SELECT * FROM t_veiculo WHERE cor LIKE ? and locado=?;");
+                PreparedStatement stmt = conn.prepareStatement("SELECT * FROM t_veiculo WHERE marca LIKE ? AND locado=? AND t_veiculo.idAdmin = ?;");
                 stmt.setString(1, busca+"%"); 
                 stmt.setBoolean(2, locado);
+                stmt.setInt(3, idAdmin);
                 
                 ResultSet rs = stmt.executeQuery();
                 while(rs.next()){
                     Veiculo v = new Veiculo();
                     v.setId(rs.getInt("id"));
+                    v.setIdAdmin(rs.getInt("idAdmin"));
                     v.setMarca(rs.getString("marca"));
                     v.setModelo(rs.getString("modelo"));
                     v.setPlaca(rs.getString("placa"));
@@ -124,13 +130,16 @@ public class VeiculoDAO {
              }
              stmt.close();
             }else if(valor == 3){
-                PreparedStatement stmt = conn.prepareStatement("SELECT * FROM t_veiculo WHERE anoLancamento LIKE ? and locado=?;");
+                PreparedStatement stmt = conn.prepareStatement("SELECT * FROM t_veiculo WHERE marca LIKE ? AND locado=? AND t_veiculo.idAdmin = ?;");
                 stmt.setString(1, busca+"%");
                 stmt.setBoolean(2, locado);
+                stmt.setInt(3, idAdmin);
+                
                 ResultSet rs = stmt.executeQuery();
                 while(rs.next()){
                     Veiculo v = new Veiculo();
                     v.setId(rs.getInt("id"));
+                    v.setIdAdmin(rs.getInt("idAdmin"));
                     v.setMarca(rs.getString("marca"));
                     v.setModelo(rs.getString("modelo"));
                     v.setPlaca(rs.getString("placa"));

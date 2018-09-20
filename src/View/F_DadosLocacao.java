@@ -104,6 +104,8 @@ public class F_DadosLocacao extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         f_cpf = new javax.swing.JTextField();
         f_dataDevolucao = new javax.swing.JFormattedTextField();
+        f_codAdmin = new javax.swing.JTextField();
+        jLabel30 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1200, 700));
@@ -219,18 +221,25 @@ public class F_DadosLocacao extends javax.swing.JFrame {
         f_telefoneLocatario.setEditable(false);
         f_telefoneLocatario.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
 
+        f_marca.setEditable(false);
         f_marca.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
 
+        f_modelo.setEditable(false);
         f_modelo.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
 
+        f_capacidade.setEditable(false);
         f_capacidade.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
 
+        f_cor.setEditable(false);
         f_cor.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
 
+        f_lancamento.setEditable(false);
         f_lancamento.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
 
+        f_tipoComb.setEditable(false);
         f_tipoComb.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
 
+        f_quantComb.setEditable(false);
         f_quantComb.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
 
         f_dataSaida.setEditable(false);
@@ -250,6 +259,7 @@ public class F_DadosLocacao extends javax.swing.JFrame {
         jLabel29.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel29.setText("Placa:");
 
+        f_placa.setEditable(false);
         f_placa.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
 
         jLabel18.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -258,6 +268,13 @@ public class F_DadosLocacao extends javax.swing.JFrame {
         f_cpf.setEditable(false);
         f_cpf.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
 
+        f_codAdmin.setEditable(false);
+        f_codAdmin.setBackground(new java.awt.Color(204, 204, 204));
+        f_codAdmin.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        f_codAdmin.setFocusable(false);
+
+        jLabel30.setText("Código do Administrador:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -265,24 +282,35 @@ public class F_DadosLocacao extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(585, 585, 585)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel25)
-                        .addGap(92, 92, 92)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(f_horarioSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(f_dataSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(200, 200, 200)
-                                .addComponent(jLabel27)
-                                .addGap(73, 73, 73)
-                                .addComponent(f_dataDevolucao, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(0, 549, Short.MAX_VALUE))
+                        .addComponent(jLabel7))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(590, 590, 590)
+                        .addComponent(jButton1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel30)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(f_codAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(389, 389, 389)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel25)
+                                .addGap(92, 92, 92)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(f_horarioSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(f_dataSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(200, 200, 200)
+                                        .addComponent(jLabel27)
+                                        .addGap(73, 73, 73)
+                                        .addComponent(f_dataDevolucao, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 549, Short.MAX_VALUE))
                     .addComponent(jSeparator2)
                     .addComponent(jSeparator1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -377,21 +405,15 @@ public class F_DadosLocacao extends javax.swing.JFrame {
                         .addGap(167, 167, 167))
                     .addComponent(jSeparator3)
                     .addComponent(jSeparator4)))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel7))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(590, 590, 590)
-                        .addComponent(jButton1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel30)
+                    .addComponent(f_codAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -402,7 +424,6 @@ public class F_DadosLocacao extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
                     .addComponent(f_cnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(f_enderecoLocadora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -482,7 +503,7 @@ public class F_DadosLocacao extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel26)
                     .addComponent(f_horarioSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(86, 86, 86))
         );
@@ -501,7 +522,9 @@ public class F_DadosLocacao extends javax.swing.JFrame {
         // Locatário
         Locatario l = new Locatario();
         LocatarioDAO locatarioDAO = new LocatarioDAO();
-        l = locatarioDAO.buscar(idLocatario);
+        
+        int idAdmin = Integer.parseInt(f_codAdmin.getText());
+        l = locatarioDAO.buscar(idLocatario, idAdmin);
         
         f_nomeLocatario.setText(l.getNomeCompleto());
         f_dataNascimento.setText(l.getNascimento());
@@ -581,6 +604,7 @@ public class F_DadosLocacao extends javax.swing.JFrame {
     private javax.swing.JTextField f_capacidade;
     private javax.swing.JTextField f_cnh;
     private javax.swing.JTextField f_cnpj;
+    private javax.swing.JTextField f_codAdmin;
     private javax.swing.JTextField f_cor;
     private javax.swing.JTextField f_cpf;
     private javax.swing.JFormattedTextField f_dataDevolucao;
@@ -624,6 +648,7 @@ public class F_DadosLocacao extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

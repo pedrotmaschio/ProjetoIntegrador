@@ -69,4 +69,19 @@ public class AdministradorDAO {
         }
         return retorno;
     }
+   public int buscaId(String email){
+       int id = 0;
+       try {
+           PreparedStatement stmt = conn.prepareStatement("SELECT id from t_admin WHERE email=?");
+           stmt.setString(1, email);
+           ResultSet rs = stmt.executeQuery();
+           while(rs.next()){
+               id = rs.getInt("id");
+           }
+       }catch(Exception ex){
+           throw new RuntimeException();
+       }
+       return id;
+   }
+ 
 }

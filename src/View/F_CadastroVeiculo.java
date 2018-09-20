@@ -72,6 +72,8 @@ public class F_CadastroVeiculo extends javax.swing.JFrame {
         f_anoAquisicao = new javax.swing.JFormattedTextField(mascaraAnoAquisicao);
         SpinnerQuant = new javax.swing.JSpinner();
         SpinnerCapaci = new javax.swing.JSpinner();
+        jLabel15 = new javax.swing.JLabel();
+        f_codAdmin = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -152,6 +154,12 @@ public class F_CadastroVeiculo extends javax.swing.JFrame {
 
         SpinnerQuant.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
+        jLabel15.setText("Código do Administrador:");
+
+        f_codAdmin.setEditable(false);
+        f_codAdmin.setBackground(new java.awt.Color(204, 204, 204));
+        f_codAdmin.setFocusable(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -159,14 +167,19 @@ public class F_CadastroVeiculo extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel9)
+                        .addComponent(jLabel10)
+                        .addComponent(jLabel11)
+                        .addComponent(jLabel4)
+                        .addComponent(jLabel8)
+                        .addComponent(jLabel6)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel15)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(f_codAdmin)))
+                    .addComponent(jLabel1))
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,14 +204,11 @@ public class F_CadastroVeiculo extends javax.swing.JFrame {
                                 .addComponent(f_cor, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel14)
-                                .addGap(72, 72, 72))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(f_modelo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(f_anoAquisicao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(70, Short.MAX_VALUE))))
+                                .addContainerGap(57, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -226,7 +236,11 @@ public class F_CadastroVeiculo extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel15)
+                        .addComponent(f_codAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(f_marca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -274,7 +288,9 @@ public class F_CadastroVeiculo extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    public void preencher(int idAdmin){
+        f_codAdmin.setText(String.valueOf(idAdmin));
+    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         Veiculo v = new Veiculo();
@@ -307,7 +323,7 @@ public class F_CadastroVeiculo extends javax.swing.JFrame {
         
         v.setObservacao(f_observacao.getText());
         v.setCapacidadeTanque(Double.parseDouble(SpinnerCapaci.getValue().toString()));
-        
+        v.setIdAdmin(Integer.parseInt(f_codAdmin.getText()));
         VeiculoDAO veiculo = new VeiculoDAO();
         veiculo.create(v);
         this.setVisible(false);
@@ -360,6 +376,7 @@ public class F_CadastroVeiculo extends javax.swing.JFrame {
     private javax.swing.JSpinner SpinnerQuant;
     private javax.swing.JFormattedTextField f_anoAquisicao;
     private javax.swing.JFormattedTextField f_anoLancamento;
+    private javax.swing.JTextField f_codAdmin;
     private javax.swing.JTextField f_cor;
     private javax.swing.JTextField f_marca;
     private javax.swing.JTextField f_modelo;
@@ -372,6 +389,7 @@ public class F_CadastroVeiculo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
