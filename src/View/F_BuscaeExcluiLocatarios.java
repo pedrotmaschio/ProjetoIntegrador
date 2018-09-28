@@ -18,12 +18,14 @@ import javax.swing.table.DefaultTableModel;
 public class F_BuscaeExcluiLocatarios extends javax.swing.JFrame {
     List <Locatario> locatarios;
     LocatarioDAO locatarioDAO;
+    static int idAdmin;
     /**
      * Creates new form F_BuscaExcluirLocatarios
      */
-    public F_BuscaeExcluiLocatarios() {
+    public F_BuscaeExcluiLocatarios(int idAdmin) {
         locatarioDAO = new LocatarioDAO();
         initComponents();
+        this.idAdmin = idAdmin;
     }
 
     /**
@@ -184,9 +186,7 @@ public class F_BuscaeExcluiLocatarios extends javax.swing.JFrame {
     private void f_buscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_f_buscaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_f_buscaActionPerformed
-    public void preencheIdAdmin(int codAdmin){
-        f_codAdmin.setText(String.valueOf(codAdmin));
-    }
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         locatarios = null;
@@ -275,7 +275,7 @@ public class F_BuscaeExcluiLocatarios extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new F_BuscaeExcluiLocatarios().setVisible(true);
+                new F_BuscaeExcluiLocatarios(idAdmin).setVisible(true);
             }
         });
     }

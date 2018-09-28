@@ -9,6 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import DAO.AdministradorDAO;
+import Model.Validacao;
 
 /**
  *
@@ -158,23 +159,11 @@ public class F_Login_Cadastro extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    public boolean validar(String email)
-        {
-            boolean isEmailIdValid = false;
-            if (email != null && email.length() > 0) {
-                String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
-                Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
-                Matcher matcher = pattern.matcher(email);
-                if (matcher.matches()) {
-                    isEmailIdValid = true;
-                }
-            }
-        return isEmailIdValid;
-    }
+
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if(!validar(f_email.getText())){
+        if(!Validacao.validarEmail(f_email.getText())){
             JOptionPane.showMessageDialog(null, "Informe um e-mail válido!");
         } else {
             

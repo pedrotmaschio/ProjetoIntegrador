@@ -10,12 +10,13 @@ package View;
  * @author Pedro Maschio
  */
 public class F_GerenciarLocatarios extends javax.swing.JFrame {
-
+    static int idAdmin;
     /**
      * Creates new form F_GerenciarLocatarios
      */
-    public F_GerenciarLocatarios() {
+    public F_GerenciarLocatarios(int idAdmin) {
         initComponents();
+        this.idAdmin = idAdmin;
     }
 
     /**
@@ -30,8 +31,6 @@ public class F_GerenciarLocatarios extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        f_codAdmin = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -52,26 +51,10 @@ public class F_GerenciarLocatarios extends javax.swing.JFrame {
             }
         });
 
-        f_codAdmin.setEditable(false);
-        f_codAdmin.setFocusable(false);
-        f_codAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                f_codAdminActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setText("Código do Administrador:");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(f_codAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(171, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,11 +72,7 @@ public class F_GerenciarLocatarios extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(f_codAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
+                .addGap(71, 71, 71)
                 .addComponent(jButton1)
                 .addGap(50, 50, 50)
                 .addComponent(jButton2)
@@ -107,25 +86,16 @@ public class F_GerenciarLocatarios extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        F_CadastroLocatario cadastro = new F_CadastroLocatario();
-        cadastro.preencheIdAdmin(Integer.parseInt(f_codAdmin.getText()));
+        F_CadastroLocatario cadastro = new F_CadastroLocatario(idAdmin);
        
         cadastro.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
-    public void preencheIdAdmin(int idAdmin){
-        f_codAdmin.setText(String.valueOf(idAdmin));
-    }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        F_BuscaeExcluiLocatarios buscaexclui = new F_BuscaeExcluiLocatarios();
-        buscaexclui.preencheIdAdmin(Integer.parseInt(f_codAdmin.getText()));
+        F_BuscaeExcluiLocatarios buscaexclui = new F_BuscaeExcluiLocatarios(idAdmin);
         buscaexclui.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void f_codAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_f_codAdminActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_f_codAdminActionPerformed
 
     /**
      * @param args the command line arguments
@@ -157,16 +127,14 @@ public class F_GerenciarLocatarios extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new F_GerenciarLocatarios().setVisible(true);
+                new F_GerenciarLocatarios(idAdmin).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField f_codAdmin;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }

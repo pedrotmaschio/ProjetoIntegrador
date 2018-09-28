@@ -148,22 +148,19 @@ public class F_Principal extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        F_GerenciarLocatarios gerenciar = new F_GerenciarLocatarios();
-        gerenciar.preencheIdAdmin(Integer.parseInt(f_codAdmin.getText()));
+        F_GerenciarLocatarios gerenciar = new F_GerenciarLocatarios(idAdmin);
         gerenciar.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        F_ConsultaVeiculosDisponiveis consulta = new F_ConsultaVeiculosDisponiveis();
-        consulta.preencheAdmin(Integer.parseInt(f_codAdmin.getText()));
+        F_ConsultaVeiculosDisponiveis consulta = new F_ConsultaVeiculosDisponiveis(Integer.parseInt(f_codAdmin.getText()));
         consulta.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        F_ConsultaVeiculosLocados locados = new F_ConsultaVeiculosLocados();
-        locados.preencheAdmin(Integer.parseInt(f_codAdmin.getText()));
+        F_ConsultaVeiculosLocados locados = new F_ConsultaVeiculosLocados(Integer.parseInt(f_codAdmin.getText()));
         locados.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 

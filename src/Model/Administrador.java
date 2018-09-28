@@ -11,6 +11,16 @@ package Model;
  */
 public class Administrador {
     private String nome, CNPJ, nascimento, nomeCompanhia, enderecoCompanhia, email, senha;
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
 
     public String getNome() {
         return nome;

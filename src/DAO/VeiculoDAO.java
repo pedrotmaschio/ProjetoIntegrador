@@ -78,7 +78,7 @@ public class VeiculoDAO {
              }
              stmt.close();
             } else if(valor == 1){
-                PreparedStatement stmt = conn.prepareStatement("SELECT * FROM t_veiculo WHERE marca LIKE ? AND locado=? AND t_veiculo.idAdmin = ?;");
+                PreparedStatement stmt = conn.prepareStatement("SELECT * FROM t_veiculo WHERE modelo LIKE ? AND locado=? AND t_veiculo.idAdmin = ?;");
                 stmt.setString(1, busca+"%");
                 stmt.setBoolean(2, locado);
                 stmt.setInt(3, idAdmin);
@@ -104,7 +104,7 @@ public class VeiculoDAO {
              }
              stmt.close();
             }else if(valor == 2){
-                PreparedStatement stmt = conn.prepareStatement("SELECT * FROM t_veiculo WHERE marca LIKE ? AND locado=? AND t_veiculo.idAdmin = ?;");
+                PreparedStatement stmt = conn.prepareStatement("SELECT * FROM t_veiculo WHERE cor LIKE ? AND locado=? AND t_veiculo.idAdmin = ?;");
                 stmt.setString(1, busca+"%"); 
                 stmt.setBoolean(2, locado);
                 stmt.setInt(3, idAdmin);
@@ -130,7 +130,7 @@ public class VeiculoDAO {
              }
              stmt.close();
             }else if(valor == 3){
-                PreparedStatement stmt = conn.prepareStatement("SELECT * FROM t_veiculo WHERE marca LIKE ? AND locado=? AND t_veiculo.idAdmin = ?;");
+                PreparedStatement stmt = conn.prepareStatement("SELECT * FROM t_veiculo WHERE anoLancamento LIKE ? AND locado=? AND t_veiculo.idAdmin = ?;");
                 stmt.setString(1, busca+"%");
                 stmt.setBoolean(2, locado);
                 stmt.setInt(3, idAdmin);

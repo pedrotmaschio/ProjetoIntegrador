@@ -5,8 +5,10 @@
  */
 package View;
 
+import DAO.AdministradorDAO;
 import DAO.LocatarioDAO;
 import DAO.VeiculoDAO;
+import Model.Administrador;
 import Model.Locatario;
 import Model.Veiculo;
 import java.text.SimpleDateFormat;
@@ -20,6 +22,10 @@ import javax.swing.text.MaskFormatter;
  * @author Pedro Maschio
  */
 public class F_DadosLocacao extends javax.swing.JFrame {
+    static int idAdmin;
+    static int idVeiculo;
+    static int idLocatario;
+    
     public void mascaraCampos(){
         try {
             MaskFormatter mascaraData = new MaskFormatter("##/##/####");
@@ -31,12 +37,14 @@ public class F_DadosLocacao extends javax.swing.JFrame {
     /**
      * Creates new form F_DadosLocacao
      */
-    public F_DadosLocacao() {
+    public F_DadosLocacao(int idAdmin, int idVeiculo, int idLocatario) {
         
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
         mascaraCampos();
-        
+        this.idAdmin = idAdmin;
+        this.idVeiculo = idVeiculo;
+        this.idLocatario = idLocatario;
     }
 
     /**
@@ -104,8 +112,6 @@ public class F_DadosLocacao extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         f_cpf = new javax.swing.JTextField();
         f_dataDevolucao = new javax.swing.JFormattedTextField();
-        f_codAdmin = new javax.swing.JTextField();
-        jLabel30 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1200, 700));
@@ -183,7 +189,7 @@ public class F_DadosLocacao extends javax.swing.JFrame {
         jLabel26.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel26.setText("Horário de Saída:");
 
-        jLabel27.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel27.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel27.setText("Data de Devolução:");
 
         jButton1.setBackground(new java.awt.Color(0, 153, 153));
@@ -196,54 +202,71 @@ public class F_DadosLocacao extends javax.swing.JFrame {
         });
 
         f_nomeLocadora.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        f_nomeLocadora.setFocusable(false);
 
         f_enderecoLocadora.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        f_enderecoLocadora.setFocusable(false);
 
         f_cnpj.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        f_cnpj.setFocusable(false);
 
         f_email.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        f_email.setFocusable(false);
 
         f_nomeLocatario.setEditable(false);
         f_nomeLocatario.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        f_nomeLocatario.setFocusable(false);
 
         f_dataNascimento.setEditable(false);
         f_dataNascimento.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        f_dataNascimento.setFocusable(false);
 
         f_cnh.setEditable(false);
         f_cnh.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        f_cnh.setFocusable(false);
 
         f_emailLocatario.setEditable(false);
         f_emailLocatario.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        f_emailLocatario.setFocusable(false);
 
         f_enderecoLocatario.setEditable(false);
         f_enderecoLocatario.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        f_enderecoLocatario.setFocusable(false);
 
         f_telefoneLocatario.setEditable(false);
         f_telefoneLocatario.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        f_telefoneLocatario.setFocusable(false);
 
         f_marca.setEditable(false);
         f_marca.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        f_marca.setFocusable(false);
 
         f_modelo.setEditable(false);
         f_modelo.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        f_modelo.setFocusable(false);
 
         f_capacidade.setEditable(false);
         f_capacidade.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        f_capacidade.setFocusable(false);
 
         f_cor.setEditable(false);
         f_cor.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        f_cor.setFocusable(false);
 
         f_lancamento.setEditable(false);
         f_lancamento.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
 
         f_tipoComb.setEditable(false);
         f_tipoComb.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        f_tipoComb.setFocusable(false);
 
         f_quantComb.setEditable(false);
         f_quantComb.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        f_quantComb.setFocusable(false);
 
         f_dataSaida.setEditable(false);
         f_dataSaida.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        f_dataSaida.setFocusable(false);
         f_dataSaida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 f_dataSaidaActionPerformed(evt);
@@ -252,6 +275,12 @@ public class F_DadosLocacao extends javax.swing.JFrame {
 
         f_horarioSaida.setEditable(false);
         f_horarioSaida.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        f_horarioSaida.setFocusable(false);
+        f_horarioSaida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                f_horarioSaidaActionPerformed(evt);
+            }
+        });
 
         jLabel28.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel28.setText("litros");
@@ -267,13 +296,7 @@ public class F_DadosLocacao extends javax.swing.JFrame {
 
         f_cpf.setEditable(false);
         f_cpf.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-
-        f_codAdmin.setEditable(false);
-        f_codAdmin.setBackground(new java.awt.Color(204, 204, 204));
-        f_codAdmin.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        f_codAdmin.setFocusable(false);
-
-        jLabel30.setText("Código do Administrador:");
+        f_cpf.setFocusable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -294,10 +317,7 @@ public class F_DadosLocacao extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel30)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(f_codAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(389, 389, 389)
+                                .addGap(575, 575, 575)
                                 .addComponent(jLabel1))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel25)
@@ -310,7 +330,7 @@ public class F_DadosLocacao extends javax.swing.JFrame {
                                         .addComponent(jLabel27)
                                         .addGap(73, 73, 73)
                                         .addComponent(f_dataDevolucao, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(0, 549, Short.MAX_VALUE))
+                        .addGap(0, 543, Short.MAX_VALUE))
                     .addComponent(jSeparator2)
                     .addComponent(jSeparator1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -410,10 +430,7 @@ public class F_DadosLocacao extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel30)
-                    .addComponent(f_codAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel1)
                 .addGap(12, 12, 12)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -513,17 +530,30 @@ public class F_DadosLocacao extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void f_dataSaidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_f_dataSaidaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_f_dataSaidaActionPerformed
-    public void preencheLocacao(int idLocatario, int idVeiculo){
+
+    private void f_horarioSaidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_f_horarioSaidaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_f_horarioSaidaActionPerformed
+    public void preencheLocacao(int idLocatario, int idVeiculo, int idAdmin){
+        // Administrador
+        Administrador a = new Administrador();
+        AdministradorDAO administradorDAO = new AdministradorDAO();
+        a = administradorDAO.buscar(idAdmin);
+        f_nomeLocadora.setText(a.getNomeCompanhia());
+        f_enderecoLocadora.setText(a.getEnderecoCompanhia());
+        f_cnpj.setText(a.getCNPJ());
+        f_email.setText(a.getEmail());
+        
         // Locatário
         Locatario l = new Locatario();
         LocatarioDAO locatarioDAO = new LocatarioDAO();
         
-        int idAdmin = Integer.parseInt(f_codAdmin.getText());
         l = locatarioDAO.buscar(idLocatario, idAdmin);
         
         f_nomeLocatario.setText(l.getNomeCompleto());
@@ -595,7 +625,7 @@ public class F_DadosLocacao extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new F_DadosLocacao().setVisible(true);
+                new F_DadosLocacao(idAdmin, idVeiculo, idLocatario).setVisible(true);
             }
         });
     }
@@ -604,7 +634,6 @@ public class F_DadosLocacao extends javax.swing.JFrame {
     private javax.swing.JTextField f_capacidade;
     private javax.swing.JTextField f_cnh;
     private javax.swing.JTextField f_cnpj;
-    private javax.swing.JTextField f_codAdmin;
     private javax.swing.JTextField f_cor;
     private javax.swing.JTextField f_cpf;
     private javax.swing.JFormattedTextField f_dataDevolucao;
@@ -648,7 +677,6 @@ public class F_DadosLocacao extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

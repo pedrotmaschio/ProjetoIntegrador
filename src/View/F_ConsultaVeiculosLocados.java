@@ -18,11 +18,15 @@ import javax.swing.table.DefaultTableModel;
 public class F_ConsultaVeiculosLocados extends javax.swing.JFrame {
     List<Veiculo> veiculos;
     DefaultTableModel tabela;
+    static int idAdmin;
     /**
      * Creates new form F_ConsultaVeiculosLocados
      */
-    public F_ConsultaVeiculosLocados() {
+    public F_ConsultaVeiculosLocados(int idAdmin) {
         initComponents();
+        tabela = (DefaultTableModel) t_veiculos.getModel();
+        tabela.setRowCount(0);
+        this.idAdmin = idAdmin;
     }
 
     /**
@@ -47,8 +51,6 @@ public class F_ConsultaVeiculosLocados extends javax.swing.JFrame {
         t_veiculos = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        f_codAdmin = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(900, 700));
@@ -126,11 +128,6 @@ public class F_ConsultaVeiculosLocados extends javax.swing.JFrame {
 
         jButton4.setText("Devolver Veículo");
 
-        jLabel3.setText("Código do Administrador:");
-
-        f_codAdmin.setEditable(false);
-        f_codAdmin.setFocusable(false);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -153,34 +150,25 @@ public class F_ConsultaVeiculosLocados extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton4)
-                        .addGap(42, 42, 42)
-                        .addComponent(jButton2)
-                        .addGap(26, 26, 26)
-                        .addComponent(jButton3)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(f_codAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addGap(315, 315, 315))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton4)
+                    .addGap(42, 42, 42)
+                    .addComponent(jButton2)
+                    .addGap(26, 26, 26)
+                    .addComponent(jButton3)
+                    .addContainerGap())
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1)
+                    .addGap(315, 315, 315)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3)
-                        .addComponent(f_codAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jLabel1)
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(f_busca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -221,9 +209,7 @@ public class F_ConsultaVeiculosLocados extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButton3ActionPerformed
-    public void preencheAdmin(int idAdmin){
-        f_codAdmin.setText(String.valueOf(idAdmin));
-    }
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         veiculos = null;
@@ -237,8 +223,7 @@ public class F_ConsultaVeiculosLocados extends javax.swing.JFrame {
 
         valor = Combo_Busca.getSelectedIndex();
         
-        int idAdmin = Integer.parseInt(f_codAdmin.getText());
-        veiculos = veiculo.buscar(valor, f_busca.getText().trim(), false, idAdmin);
+        veiculos = veiculo.buscar(valor, f_busca.getText().trim(), true, idAdmin);
         for(int i = 0; i < veiculos.size(); i++){
             Veiculo v = new Veiculo();
             v = veiculos.get(i);
@@ -255,7 +240,7 @@ public class F_ConsultaVeiculosLocados extends javax.swing.JFrame {
         else {
             DefaultTableModel tabela = (DefaultTableModel) t_veiculos.getModel();
             int id = (int) tabela.getValueAt(linha, 0);
-            F_EditarVeiculo editar = new F_EditarVeiculo();
+            F_EditarVeiculo editar = new F_EditarVeiculo(id);
             editar.preencheCampos(id);
             editar.setVisible(true);
             tabela.setRowCount(0);
@@ -296,7 +281,7 @@ public class F_ConsultaVeiculosLocados extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new F_ConsultaVeiculosLocados().setVisible(true);
+                new F_ConsultaVeiculosLocados(idAdmin).setVisible(true);
             }
         });
     }
@@ -304,14 +289,12 @@ public class F_ConsultaVeiculosLocados extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> Combo_Busca;
     private javax.swing.JTextField f_busca;
-    private javax.swing.JTextField f_codAdmin;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;

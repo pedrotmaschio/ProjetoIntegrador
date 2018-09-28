@@ -83,5 +83,25 @@ public class AdministradorDAO {
        }
        return id;
    }
- 
+   public Administrador buscar(int idAdmin){
+       Administrador a = new Administrador();
+       try {
+           PreparedStatement stmt = conn.prepareStatement("SELECT * FROM t_admin WHERE id = ?");
+           stmt.setInt(1, idAdmin);
+           ResultSet rs = stmt.executeQuery();
+           while(rs.next()){
+               a.setId(rs.getInt("id"));
+               a.setCNPJ(rs.getString("cnpj"));
+               a.setEmail(rs.getString("email"));
+               a.setEnderecoCompanhia(rs.getString("enderecoCompanhia"));
+               a.setNascimento(rs.getString("dataNasc"));
+               a.setEmail(rs.getString("email"));
+               a.setNomeCompanhia(rs.getString("companhia"));
+           }
+       }
+       catch(Exception ex){
+           throw new RuntimeException(ex);
+       }
+       return a;
+   }
 }

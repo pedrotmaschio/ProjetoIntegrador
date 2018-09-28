@@ -15,6 +15,7 @@ import javax.swing.text.MaskFormatter;
  * @author Pedro Maschio
  */
 public class F_EditarVeiculo extends javax.swing.JFrame {
+    static int id;
     MaskFormatter mascaraPlaca, mascaraAnoLancamento, mascaraQuantCombustivel;
     MaskFormatter mascaraAnoAquisicao, mascaraCapaciTanque;
     public void defineMascaras(){
@@ -32,10 +33,10 @@ public class F_EditarVeiculo extends javax.swing.JFrame {
     /**
      * Creates new form F_EditarVeiculo
      */
-    public F_EditarVeiculo() {
+    public F_EditarVeiculo(int id) {
         defineMascaras();
         initComponents();
-        
+        this.id = id;
     }
 
     /**
@@ -48,7 +49,6 @@ public class F_EditarVeiculo extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -60,7 +60,6 @@ public class F_EditarVeiculo extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        in_Cod = new javax.swing.JTextField();
         in_marca = new javax.swing.JTextField();
         in_modelo = new javax.swing.JTextField();
         in_placa = new javax.swing.JFormattedTextField(mascaraPlaca);
@@ -74,16 +73,13 @@ public class F_EditarVeiculo extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        SpinnerCapaci = new javax.swing.JSpinner();
-        SpinnerQuant = new javax.swing.JSpinner();
+        f_capaci = new javax.swing.JTextField();
+        f_quant = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setText("Editar Veículo");
-
-        jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel2.setText("Código:");
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel3.setText("Marca:");
@@ -123,10 +119,6 @@ public class F_EditarVeiculo extends javax.swing.JFrame {
             }
         });
 
-        in_Cod.setEditable(false);
-        in_Cod.setBackground(new java.awt.Color(204, 204, 204));
-        in_Cod.setFocusable(false);
-
         in_marca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 in_marcaActionPerformed(evt);
@@ -158,10 +150,6 @@ public class F_EditarVeiculo extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel15.setText("litros");
 
-        SpinnerCapaci.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-
-        SpinnerQuant.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -178,53 +166,47 @@ public class F_EditarVeiculo extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel14)
                             .addComponent(jLabel7)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel2))
+                            .addComponent(jLabel10))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(in_Cod, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(in_marca, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(in_placa, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(in_anoLancamento, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(in_marca, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(in_placa, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(in_anoLancamento, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(SpinnerCapaci, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
-                                                    .addComponent(SpinnerQuant))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel15)
-                                                    .addComponent(jLabel13))))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(f_capaci, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
+                                            .addComponent(f_quant))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel15)
+                                            .addComponent(jLabel13))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel6)
+                                            .addComponent(jLabel4))
+                                        .addGap(101, 101, 101)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel6)
-                                                    .addComponent(jLabel4))
-                                                .addGap(101, 101, 101)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(in_cor)
-                                                    .addComponent(in_modelo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel9)
-                                                    .addComponent(jLabel8))
-                                                .addGap(18, 18, 18)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(in_anoAquisicao)
-                                                    .addComponent(in_tipoComb, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel11)
-                                                .addGap(78, 78, 78)
-                                                .addComponent(in_acessorios)))
-                                        .addGap(4, 4, 4)))
-                                .addGap(61, 61, 61))))))
+                                            .addComponent(in_cor)
+                                            .addComponent(in_modelo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel9)
+                                            .addComponent(jLabel8))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(in_anoAquisicao)
+                                            .addComponent(in_tipoComb, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel11)
+                                        .addGap(78, 78, 78)
+                                        .addComponent(in_acessorios)))
+                                .addGap(4, 4, 4)))
+                        .addGap(61, 61, 61))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jButton1)
@@ -244,11 +226,7 @@ public class F_EditarVeiculo extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(in_Cod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(62, 62, 62)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -268,28 +246,26 @@ public class F_EditarVeiculo extends javax.swing.JFrame {
                             .addComponent(jLabel15)
                             .addComponent(jLabel9)
                             .addComponent(in_tipoComb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(SpinnerCapaci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel4)
-                            .addGap(18, 18, 18)
-                            .addComponent(jLabel6)
-                            .addGap(18, 18, 18)
-                            .addComponent(jLabel8)
-                            .addGap(3, 3, 3))
-                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(f_capaci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(in_modelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
+                            .addComponent(jLabel4))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(in_cor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(in_anoAquisicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel6))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(in_anoAquisicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
                             .addComponent(jLabel13)
-                            .addComponent(SpinnerQuant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(f_quant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -301,7 +277,7 @@ public class F_EditarVeiculo extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
                 .addComponent(jButton1)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         pack();
@@ -317,16 +293,16 @@ public class F_EditarVeiculo extends javax.swing.JFrame {
         VeiculoDAO veiculoDAO = new VeiculoDAO();
         Veiculo v = new Veiculo();
         
-        v.setId(Integer.parseInt(in_Cod.getText().trim()));
+        v.setId(id);
         v.setMarca(in_marca.getText());
         v.setModelo(in_modelo.getText());
         v.setPlaca(in_placa.getText());
         v.setCor(in_cor.getText());
         v.setAnoLancamento(Integer.parseInt(in_anoLancamento.getText().trim()));
         v.setAnoAquisicao(Integer.parseInt(in_anoAquisicao.getText().trim()));
-        v.setCapacidadeTanque(Double.parseDouble(SpinnerCapaci.getValue().toString()));
+        v.setCapacidadeTanque(Double.parseDouble(f_capaci.getText()));
         v.setTipoComb(in_tipoComb.getText());
-        v.setQuantComb(Double.parseDouble(SpinnerQuant.getValue().toString()));
+        v.setQuantComb(Double.parseDouble(f_quant.getText()));
         v.setAcessorios(in_acessorios.getText());
         v.setObservacao(in_observacoes.getText());
         veiculoDAO.editar(v);
@@ -345,16 +321,16 @@ public class F_EditarVeiculo extends javax.swing.JFrame {
         Veiculo v = new Veiculo();
         v = veiculoDAO.buscar(id);
         
-        in_Cod.setText(String.valueOf(v.getId()));
+        
         in_marca.setText(v.getMarca());
         in_modelo.setText(v.getModelo());
         in_placa.setText(v.getPlaca());
         in_cor.setText(v.getCor());
         in_anoLancamento.setText(String.valueOf(v.getAnoLancamento()));
         in_anoAquisicao.setText(String.valueOf(v.getAnoAquisicao()));
-        SpinnerCapaci.setValue(v.getCapacidadeTanque());
+        f_capaci.setText(String.valueOf(v.getCapacidadeTanque()));
         in_tipoComb.setText(v.getTipoComb());
-        SpinnerQuant.setValue(v.getQuantComb());
+        f_quant.setText(String.valueOf(v.getQuantComb()));
         in_acessorios.setText(v.getAcessorios());
         in_observacoes.setText(v.getObservacao());
     }
@@ -388,15 +364,14 @@ public class F_EditarVeiculo extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new F_EditarVeiculo().setVisible(true);
+                new F_EditarVeiculo(id).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JSpinner SpinnerCapaci;
-    private javax.swing.JSpinner SpinnerQuant;
-    private javax.swing.JTextField in_Cod;
+    private javax.swing.JTextField f_capaci;
+    private javax.swing.JTextField f_quant;
     private javax.swing.JTextField in_acessorios;
     private javax.swing.JTextField in_anoAquisicao;
     private javax.swing.JTextField in_anoLancamento;
@@ -414,7 +389,6 @@ public class F_EditarVeiculo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

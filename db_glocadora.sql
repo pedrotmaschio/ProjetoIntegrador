@@ -15,14 +15,14 @@ create table t_admin (
     
     primary key(id)
 );
-select * from t_admin;
+
 
 create table t_locatario (
 	id int unique auto_increment,
     idAdmin int,
 	nomeCompleto varchar(255) not null,
     dataNasc varchar(11) not null,
-    cnh int not null,
+    cnh varchar(255),
     endereco varchar(255) not null,
     email varchar(255) not null,
     cpf varchar(14) not null,
@@ -30,7 +30,6 @@ create table t_locatario (
     primary key(id),
     foreign key(idAdmin) references t_admin(id)
 );
-
 
 create table t_veiculo (
 	id int unique auto_increment,
@@ -50,8 +49,6 @@ create table t_veiculo (
     primary key(id),
     foreign key(idAdmin) references t_admin(id)
 );
-drop table t_veiculo;
-
 
 
 create table t_locacao (
@@ -82,5 +79,6 @@ create table t_locacao (
     foreign key(idLocatario) references t_locatario(id),
     foreign key(idAdmin) references t_admin(id)
 );
+
 
 
