@@ -9,6 +9,7 @@ import DAO.AdministradorDAO;
 import DAO.LocatarioDAO;
 import DAO.VeiculoDAO;
 import Model.Administrador;
+import Model.Locacao;
 import Model.Locatario;
 import Model.Veiculo;
 import java.text.SimpleDateFormat;
@@ -530,7 +531,31 @@ public class F_DadosLocacao extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        dispose();
+        Locacao l = new Locacao();
+        l.setCapaciTanque(Double.parseDouble(f_capacidade.getText()));
+        l.setCnhLocatario(f_cnh.getText());
+        l.setCnpjLocadora(f_cnpj.getText());
+        l.setCor(f_cor.getText());
+        l.setCpfLocatario(f_cpf.getText());
+        l.setDataDevolucao(f_dataDevolucao.getText());
+        l.setDataSaida(f_dataSaida.getText());
+        l.setEmailLocadora(f_email.getText());
+        l.setEmailLocatario(f_emailLocatario.getText());
+        l.setEnderecoLocadora(f_enderecoLocadora.getText());
+        l.setEnderecoLocatario(f_enderecoLocatario.getText());
+        l.setHorarioSaida(f_horarioSaida.getText());
+        l.setMarca(f_marca.getText());
+        l.setModelo(f_modelo.getText());
+        l.setNascLocatario(f_dataNascimento.getText());
+        l.setNomeLocadora(f_nomeLocadora.getText());
+        l.setNomeLocatario(f_nomeLocatario.getText());
+        l.setQuantTanque(Double.parseDouble(f_quantComb.getText()));
+        l.setTelefoneLocatario(f_telefoneLocatario.getText());
+        l.setTipoComb(f_tipoComb.getText());
         
+        F_Contrato contrato = new F_Contrato(l, idAdmin, idVeiculo);
+        contrato.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void f_dataSaidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_f_dataSaidaActionPerformed

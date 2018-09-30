@@ -15,6 +15,7 @@ create table t_admin (
     
     primary key(id)
 );
+select * from t_admin, t_locatario, t_veiculo WHERE t_admin.id=7 AND t_locatario.idAdmin=7 AND t_veiculo.id=2 AND t_veiculo.idAdmin=7;
 
 
 create table t_locatario (
@@ -30,6 +31,7 @@ create table t_locatario (
     primary key(id),
     foreign key(idAdmin) references t_admin(id)
 );
+select * from t_locatario;
 
 create table t_veiculo (
 	id int unique auto_increment,
@@ -49,7 +51,32 @@ create table t_veiculo (
     primary key(id),
     foreign key(idAdmin) references t_admin(id)
 );
+select * from t_veiculo;
 
+SELECT 
+    t_admin.companhia,
+    t_admin.cnpj,
+    t_admin.enderecoCompanhia,
+    t_admin.email as emailAdmin,
+    t_locatario.nomeCompleto as nomeLocatario,
+    t_locatario.dataNasc,
+    t_locatario.cnh,
+    t_locatario.email AS emailLocatario,
+    t_locatario.cpf,
+    t_locatario.telefone,
+    t_locatario.endereco,
+    t_veiculo.marca,
+    t_veiculo.modelo,
+    t_veiculo.cor,
+    t_veiculo.anoLancamento,
+    t_veiculo.capacidadeTanque,
+    t_veiculo.quantCombustivel
+FROM
+    t_admin, t_locatario, t_veiculo 
+WHERE
+	t_admin.id = 7 AND t_locatario.idAdmin = 7 AND t_veiculo.id = 1 AND t_veiculo.idAdmin = 7;
+
+/*
 
 create table t_locacao (
 	id int unique auto_increment,
@@ -79,6 +106,6 @@ create table t_locacao (
     foreign key(idLocatario) references t_locatario(id),
     foreign key(idAdmin) references t_admin(id)
 );
-
+*/
 
 
