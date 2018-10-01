@@ -62,6 +62,8 @@ public class F_Login_Cadastro extends javax.swing.JFrame {
         jLabel4.setText("Senha:");
 
         f_email.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        f_email.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        f_email.setNextFocusableComponent(f_senha);
 
         jButton1.setBackground(new java.awt.Color(0, 153, 153));
         jButton1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N

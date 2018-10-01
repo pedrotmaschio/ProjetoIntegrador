@@ -117,84 +117,82 @@ public class F_DadosLocacao extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1200, 700));
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Dados da Locação");
 
-        jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel2.setText("Dados da locadora");
 
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Nome:");
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel4.setText("CNPJ:");
 
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setText("Endereço:");
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel6.setText("E-mail:");
 
-        jLabel7.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel7.setText("Dados do Locatário");
 
-        jLabel8.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setText("Nome:");
 
-        jLabel9.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setText("Data de nascimento:");
 
-        jLabel10.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel10.setText("CPF:");
 
-        jLabel11.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel11.setText("CNH:");
 
-        jLabel12.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel12.setText("Endereço:");
 
-        jLabel13.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel13.setText("E-mail:");
 
-        jLabel14.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel14.setText("Telefone:");
 
         jLabel15.setText("Dados do Veículo");
 
-        jLabel16.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel16.setText("Marca:");
 
-        jLabel17.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel17.setText("Modelo:");
 
-        jLabel19.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel19.setText("Cor:");
 
-        jLabel20.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel20.setText("Lançamento:");
 
-        jLabel21.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel21.setText("Tipo de Combustível:");
 
-        jLabel22.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel22.setText("Capacidade do Tanque:");
 
-        jLabel23.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel23.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel23.setText("Quantidade de Combustível:");
 
         jLabel24.setText("Dados da Locação");
 
-        jLabel25.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel25.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel25.setText("Data de Saída:");
 
-        jLabel26.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel26.setText("Horário de Saída:");
 
         jLabel27.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel27.setText("Data de Devolução:");
 
-        jButton1.setBackground(new java.awt.Color(0, 153, 153));
-        jButton1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButton1.setBackground(new java.awt.Color(21, 190, 4));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setText("Gerar Contrato de Locação");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -202,15 +200,19 @@ public class F_DadosLocacao extends javax.swing.JFrame {
             }
         });
 
+        f_nomeLocadora.setEditable(false);
         f_nomeLocadora.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         f_nomeLocadora.setFocusable(false);
 
+        f_enderecoLocadora.setEditable(false);
         f_enderecoLocadora.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         f_enderecoLocadora.setFocusable(false);
 
+        f_cnpj.setEditable(false);
         f_cnpj.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         f_cnpj.setFocusable(false);
 
+        f_email.setEditable(false);
         f_email.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         f_email.setFocusable(false);
 
@@ -256,6 +258,7 @@ public class F_DadosLocacao extends javax.swing.JFrame {
 
         f_lancamento.setEditable(false);
         f_lancamento.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        f_lancamento.setFocusable(false);
 
         f_tipoComb.setEditable(false);
         f_tipoComb.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
@@ -283,16 +286,17 @@ public class F_DadosLocacao extends javax.swing.JFrame {
             }
         });
 
-        jLabel28.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel28.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel28.setText("litros");
 
-        jLabel29.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel29.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel29.setText("Placa:");
 
         f_placa.setEditable(false);
         f_placa.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        f_placa.setFocusable(false);
 
-        jLabel18.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel18.setText("litros");
 
         f_cpf.setEditable(false);
@@ -331,7 +335,7 @@ public class F_DadosLocacao extends javax.swing.JFrame {
                                         .addComponent(jLabel27)
                                         .addGap(73, 73, 73)
                                         .addComponent(f_dataDevolucao, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(0, 543, Short.MAX_VALUE))
+                        .addGap(0, 529, Short.MAX_VALUE))
                     .addComponent(jSeparator2)
                     .addComponent(jSeparator1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -406,7 +410,7 @@ public class F_DadosLocacao extends javax.swing.JFrame {
                                     .addComponent(jLabel21)
                                     .addComponent(jLabel23)))
                             .addComponent(jLabel26))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(f_tipoComb, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(f_cor, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -415,7 +419,7 @@ public class F_DadosLocacao extends javax.swing.JFrame {
                                 .addComponent(f_quantComb, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel18)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel29)
                             .addComponent(jLabel20))
@@ -521,7 +525,7 @@ public class F_DadosLocacao extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel26)
                     .addComponent(f_horarioSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(86, 86, 86))
         );
@@ -553,7 +557,8 @@ public class F_DadosLocacao extends javax.swing.JFrame {
         l.setQuantTanque(Double.parseDouble(f_quantComb.getText()));
         l.setTelefoneLocatario(f_telefoneLocatario.getText());
         l.setTipoComb(f_tipoComb.getText());
-        
+        l.setAnoLancamento(f_lancamento.getText());
+        l.setPlaca(f_placa.getText());
         F_Contrato contrato = new F_Contrato(l, idAdmin, idVeiculo);
         contrato.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed

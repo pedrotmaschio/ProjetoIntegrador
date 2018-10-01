@@ -46,20 +46,20 @@ public class F_BuscaeExcluiLocatarios extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        f_codAdmin = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Buscar Locatários");
 
+        f_busca.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         f_busca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 f_buscaActionPerformed(evt);
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(0, 136, 136));
         jButton1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jButton1.setText("Buscar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -68,9 +68,10 @@ public class F_BuscaeExcluiLocatarios extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Buscar por nome");
 
+        t_locatarios.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         t_locatarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -99,7 +100,8 @@ public class F_BuscaeExcluiLocatarios extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(t_locatarios);
 
-        jButton2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton2.setBackground(new java.awt.Color(255, 0, 0));
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setText("Excluir");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,21 +109,12 @@ public class F_BuscaeExcluiLocatarios extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton3.setBackground(new java.awt.Color(0, 136, 136));
+        jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton3.setText("Editar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setText("Código do Administrador:");
-
-        f_codAdmin.setEditable(false);
-        f_codAdmin.setFocusable(false);
-        f_codAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                f_codAdminActionPerformed(evt);
             }
         });
 
@@ -140,30 +133,23 @@ public class F_BuscaeExcluiLocatarios extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
+                        .addGap(33, 33, 33)
                         .addComponent(jLabel2)
-                        .addGap(47, 47, 47)
+                        .addGap(18, 18, 18)
                         .addComponent(f_busca, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(f_codAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60)
+                        .addGap(251, 251, 251)
                         .addComponent(jLabel1)))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(f_codAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(47, 47, 47)
+                .addComponent(jLabel1)
+                .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(f_busca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
@@ -176,7 +162,7 @@ public class F_BuscaeExcluiLocatarios extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
@@ -195,7 +181,7 @@ public class F_BuscaeExcluiLocatarios extends javax.swing.JFrame {
         DefaultTableModel tabela = (DefaultTableModel) t_locatarios.getModel();
         tabela.setNumRows(0);
 
-        int idAdmin = Integer.parseInt(f_codAdmin.getText());
+       
         locatarios = locatarioDAO.buscar(f_busca.getText().trim(), idAdmin);
         for(int i=0; i<locatarios.size(); i++){
             Locatario l = new Locatario();
@@ -216,7 +202,7 @@ public class F_BuscaeExcluiLocatarios extends javax.swing.JFrame {
                 DefaultTableModel tabela = (DefaultTableModel) t_locatarios.getModel();
                 int id = (int) tabela.getValueAt(linha, 0);
                 
-                int idAdmin = Integer.parseInt(f_codAdmin.getText());
+             
                 locatarioDAO.excluir(id, idAdmin);
                 tabela.setRowCount(0);
             }
@@ -231,18 +217,11 @@ public class F_BuscaeExcluiLocatarios extends javax.swing.JFrame {
         else {
             DefaultTableModel tabela = (DefaultTableModel) t_locatarios.getModel();
             int id = (int) tabela.getValueAt(linha, 0);
-            F_EditarLocatario editar = new F_EditarLocatario();
-            
-            int idAdmin = Integer.parseInt(f_codAdmin.getText());
-            editar.preencheCampos(id, idAdmin);
+            F_EditarLocatario editar = new F_EditarLocatario(id, idAdmin);
             editar.setVisible(true);
             tabela.setRowCount(0);
         }        // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void f_codAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_f_codAdminActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_f_codAdminActionPerformed
 
     /**
      * @param args the command line arguments
@@ -282,13 +261,11 @@ public class F_BuscaeExcluiLocatarios extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField f_busca;
-    private javax.swing.JTextField f_codAdmin;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable t_locatarios;

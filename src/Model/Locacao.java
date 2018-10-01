@@ -15,11 +15,27 @@ public class Locacao {
     // locatario
     String nomeLocatario, nascLocatario, enderecoLocatario, telefoneLocatario, cnhLocatario, cpfLocatario, emailLocatario;
     // veiculo
-    String marca, modelo, cor, tipoComb;
+    String marca, modelo, cor, tipoComb, placa, anoLancamento;
     double capaciTanque, quantTanque;
    
     // locacao
     String dataSaida, horarioSaida, dataDevolucao;
+
+    public String getPlaca() {
+        return placa;
+    }
+
+    public String getAnoLancamento() {
+        return anoLancamento;
+    }
+
+    public void setAnoLancamento(String anoLancamento) {
+        this.anoLancamento = anoLancamento;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
 
     public String getNomeLocadora() {
         return nomeLocadora;

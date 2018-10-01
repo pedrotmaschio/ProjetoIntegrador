@@ -7,6 +7,8 @@ package View;
 import DAO.LocacaoDAO;
 import Funcionalidades.GeracaoPDF;
 import Model.Locacao;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -38,8 +40,11 @@ public class F_Contrato extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Contrato de Locação");
 
-        jButton1.setText("SALVAR CONTRATO");
+        jButton1.setBackground(new java.awt.Color(21, 190, 4));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setText("GERAR CONTRATO");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -53,14 +58,14 @@ public class F_Contrato extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(122, 122, 122)
                 .addComponent(jButton1)
-                .addContainerGap(132, Short.MAX_VALUE))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(116, 116, 116)
                 .addComponent(jButton1)
-                .addContainerGap(129, Short.MAX_VALUE))
+                .addContainerGap(127, Short.MAX_VALUE))
         );
 
         pack();
@@ -73,11 +78,28 @@ public class F_Contrato extends javax.swing.JFrame {
         locacaoDAO.Locar(idAdmin, idVeiculo, l.getDataSaida(), l.getDataDevolucao(), l.getHorarioSaida());
         
         GeracaoPDF pdf = new GeracaoPDF();
+        String url = "/";
         try {
-            pdf.criarPdf("pdfs/contrato.pdf", l);
+            
+            JFileChooser seleciona =  new JFileChooser();
+            seleciona.setDialogTitle("Selecione o diretório no qual deseja salvar o contrato");
+            seleciona.setDialogType(JFileChooser.SAVE_DIALOG);
+            seleciona.setApproveButtonText("Salvar");
+            seleciona.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            seleciona.setMultiSelectionEnabled(false);
+            if(seleciona.showSaveDialog(seleciona) == JFileChooser.CANCEL_OPTION){
+                System.exit(1);
+            } else {
+                url = seleciona.getSelectedFile().getAbsolutePath();
+            }
+                
+            pdf.criarPdf((url+"\\Contrato.pdf"), l);
+            JOptionPane.showMessageDialog(null, "Contrato gerado com sucesso!");
         }catch(Exception ex){
             throw new RuntimeException(ex);
         }
+        dispose();
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

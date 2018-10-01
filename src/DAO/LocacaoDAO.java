@@ -44,7 +44,8 @@ public class LocacaoDAO {
 "    t_veiculo.anoLancamento,\n" +
 "    t_veiculo.capacidadeTanque,\n" +
 "    t_veiculo.tipoCombustivel,\n" +
-"    t_veiculo.quantCombustivel\n" +
+"    t_veiculo.quantCombustivel,\n" +
+"    t_veiculo.placa\n" +
 "FROM\n" +
 "    t_admin, t_locatario, t_veiculo \n" +
 "WHERE\n" +
@@ -77,6 +78,8 @@ public class LocacaoDAO {
             a.setQuantTanque(rs.getDouble("quantCombustivel"));
             a.setTelefoneLocatario(rs.getString("telefone"));
             a.setTipoComb(rs.getString("tipoCombustivel"));
+            a.setPlaca(rs.getString("placa"));
+            a.setAnoLancamento(rs.getString("anoLancamento"));
         }
         
         PreparedStatement stmt2 = con.prepareStatement("UPDATE t_veiculo SET locado=1 WHERE id=?;");
@@ -89,5 +92,16 @@ public class LocacaoDAO {
             throw new RuntimeException(ex);
         }
         return a;
+    }
+    
+    public void Devolver(int id){
+        try {
+            PreparedStatement stmt = con.prepareStatement("UPDATE t_veiculo SET locado=0 WHERE id = ?");
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+            stmt.close();
+        } catch(Exception ex){
+            throw new RuntimeException(ex);
+        }
     }
 }

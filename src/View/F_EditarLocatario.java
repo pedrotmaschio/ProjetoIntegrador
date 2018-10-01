@@ -13,7 +13,8 @@ import javax.swing.text.MaskFormatter;
  * @author Pedro Maschio
  */
 public class F_EditarLocatario extends javax.swing.JFrame {
-    MaskFormatter mascaraCPF;
+    static int idLocatario, idAdmin;
+    MaskFormatter mascaraCPF, mascaraCNH;
     MaskFormatter mascaraNascimento, mascaraTelefone;
     
     public void defineMascaras(){
@@ -21,7 +22,11 @@ public class F_EditarLocatario extends javax.swing.JFrame {
             mascaraCPF = new MaskFormatter("###.###.###-##");
             mascaraNascimento = new MaskFormatter("##/##/####");
             mascaraTelefone = new MaskFormatter("(##)#####-####");
-            
+            mascaraCNH = new MaskFormatter("###########");
+            mascaraCNH.install(f_cnh);
+            mascaraCPF.install(f_cpf);
+            mascaraNascimento.install(f_nascimento);
+            mascaraTelefone.install(f_telefone);
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null, "Ocorreu um erro!");
         }
@@ -30,9 +35,12 @@ public class F_EditarLocatario extends javax.swing.JFrame {
     /**
      * Creates new form F_EditarLocatario
      */
-    public F_EditarLocatario() {
-        defineMascaras();
+    public F_EditarLocatario(int idLocatario, int idAdmin) {
+        
         initComponents();
+        defineMascaras();
+        this.idLocatario = idLocatario;
+        this.idAdmin = idAdmin;
     }
 
     /**
@@ -52,56 +60,47 @@ public class F_EditarLocatario extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         f_nome = new javax.swing.JTextField();
-        f_cnh = new javax.swing.JTextField();
         f_endereco = new javax.swing.JTextField();
         f_email = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        f_cpf = new javax.swing.JFormattedTextField(mascaraCPF);
-        f_nascimento = new javax.swing.JFormattedTextField(mascaraNascimento);
+        f_cpf = new javax.swing.JFormattedTextField();
+        f_nascimento = new javax.swing.JFormattedTextField();
         jLabel9 = new javax.swing.JLabel();
         f_telefone = new javax.swing.JFormattedTextField(mascaraTelefone);
-        jLabel10 = new javax.swing.JLabel();
-        f_codigo = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        f_codAdmin = new javax.swing.JTextField();
+        f_cnh = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Editar Locatário");
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Editar Locatário");
 
-        jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Nome Completo: ");
 
-        jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Data de Nascimento:");
 
-        jLabel5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Número da CNH:");
 
-        jLabel6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("CPF:");
 
-        jLabel7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Endereço Completo:");
 
-        jLabel8.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("E-mail:");
 
-        f_nome.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        f_nome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        f_cnh.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        f_cnh.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                f_cnhActionPerformed(evt);
-            }
-        });
+        f_endereco.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        f_endereco.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        f_email.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        f_email.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-
-        jButton1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButton1.setBackground(new java.awt.Color(21, 190, 4));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setText("SALVAR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,86 +108,26 @@ public class F_EditarLocatario extends javax.swing.JFrame {
             }
         });
 
-        f_cpf.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        f_cpf.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         f_cpf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 f_cpfActionPerformed(evt);
             }
         });
 
-        f_nascimento.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        f_nascimento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jLabel9.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setText("Telefone:");
 
-        f_telefone.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        f_telefone.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jLabel10.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel10.setText("Código:");
-
-        f_codigo.setEditable(false);
-        f_codigo.setBackground(new java.awt.Color(204, 204, 204));
-        f_codigo.setFocusable(false);
-
-        jLabel3.setText("Código do Administrador:");
-
-        f_codAdmin.setEditable(false);
-        f_codAdmin.setFocusable(false);
-        f_codAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                f_codAdminActionPerformed(evt);
-            }
-        });
+        f_cnh.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel3))
-                        .addGap(20, 20, 20))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(f_email, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
-                            .addComponent(f_endereco))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(f_cpf)
-                            .addComponent(f_nome, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
-                            .addComponent(f_cnh, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel9))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(f_nascimento)
-                                .addGap(50, 50, 50))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(f_telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(f_codigo, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
-                            .addComponent(f_codAdmin))
-                        .addContainerGap(433, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,46 +137,77 @@ public class F_EditarLocatario extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addGap(232, 232, 232))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8))
+                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(f_email, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(f_cpf)
+                            .addComponent(f_nome, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                            .addComponent(f_cnh))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(f_telefone)
+                            .addComponent(f_nascimento))
+                        .addGap(47, 47, 47))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(f_endereco, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(248, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1)
-                .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(f_codAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(f_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(f_nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(f_nascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(f_telefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel5)
-                    .addComponent(f_cnh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(f_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(f_endereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(jLabel1)
+                                .addGap(58, 58, 58)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(f_nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel4)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel9)
+                                .addComponent(f_telefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(f_cnh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(106, 106, 106)
+                        .addComponent(f_nascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(f_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(f_endereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(f_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(26, 26, 26))
         );
@@ -246,15 +216,11 @@ public class F_EditarLocatario extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void f_cnhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_f_cnhActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_f_cnhActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         Locatario locatario = new Locatario();
-        locatario.setId(Integer.parseInt(f_codigo.getText().trim()));
-        locatario.setIdAdmin(Integer.parseInt(f_codAdmin.getText()));
+        locatario.setId(idLocatario);
+        locatario.setIdAdmin(idAdmin);
         locatario.setNomeCompleto(f_nome.getText().trim());
         locatario.setNascimento(f_nascimento.getText());
         locatario.setCnh(f_cnh.getText().trim());
@@ -274,7 +240,6 @@ public class F_EditarLocatario extends javax.swing.JFrame {
         
         
         locatario = l.buscar(id, idAdmin);
-        f_codigo.setText(String.valueOf(locatario.getId()));
         f_nome.setText(locatario.getNomeCompleto());
         f_nascimento.setText(locatario.getNascimento());
         f_cnh.setText(locatario.getCnh());
@@ -282,16 +247,11 @@ public class F_EditarLocatario extends javax.swing.JFrame {
         f_cpf.setText(locatario.getCpf());
         f_endereco.setText(locatario.getEndereco());
         f_email.setText(locatario.getEmail());
-        f_codAdmin.setText(String.valueOf(locatario.getIdAdmin()));
     }
     private void f_cpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_f_cpfActionPerformed
         // TODO add your handling code here:
 
     }//GEN-LAST:event_f_cpfActionPerformed
-
-    private void f_codAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_f_codAdminActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_f_codAdminActionPerformed
 
     /**
      * @param args the command line arguments
@@ -323,15 +283,13 @@ public class F_EditarLocatario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new F_EditarLocatario().setVisible(true);
+                new F_EditarLocatario(idLocatario, idAdmin).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField f_cnh;
-    private javax.swing.JTextField f_codAdmin;
-    private javax.swing.JTextField f_codigo;
+    private javax.swing.JFormattedTextField f_cnh;
     private javax.swing.JFormattedTextField f_cpf;
     private javax.swing.JTextField f_email;
     private javax.swing.JTextField f_endereco;
@@ -340,9 +298,7 @@ public class F_EditarLocatario extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField f_telefone;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

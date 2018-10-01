@@ -25,6 +25,9 @@ public class F_EditarVeiculo extends javax.swing.JFrame {
             mascaraQuantCombustivel = new MaskFormatter("###");
             mascaraAnoAquisicao = new MaskFormatter("####");
             mascaraCapaciTanque = new MaskFormatter("###");
+            mascaraPlaca.install(in_placa);
+            mascaraAnoLancamento.install(in_lancamento);
+            mascaraAnoAquisicao.install(in_anoAquisicao);
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null, "Ocorreu um erro!");
             throw new RuntimeException(ex);
@@ -34,8 +37,9 @@ public class F_EditarVeiculo extends javax.swing.JFrame {
      * Creates new form F_EditarVeiculo
      */
     public F_EditarVeiculo(int id) {
-        defineMascaras();
+        
         initComponents();
+        defineMascaras();
         this.id = id;
     }
 
@@ -62,10 +66,7 @@ public class F_EditarVeiculo extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         in_marca = new javax.swing.JTextField();
         in_modelo = new javax.swing.JTextField();
-        in_placa = new javax.swing.JFormattedTextField(mascaraPlaca);
         in_cor = new javax.swing.JTextField();
-        in_anoLancamento = new javax.swing.JFormattedTextField(mascaraAnoLancamento);
-        in_anoAquisicao = new javax.swing.JFormattedTextField(mascaraAnoAquisicao);
         in_tipoComb = new javax.swing.JTextField();
         in_acessorios = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -75,40 +76,43 @@ public class F_EditarVeiculo extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         f_capaci = new javax.swing.JTextField();
         f_quant = new javax.swing.JTextField();
+        in_lancamento = new javax.swing.JFormattedTextField();
+        in_placa = new javax.swing.JFormattedTextField();
+        in_anoAquisicao = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Editar Veículo");
 
-        jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Marca:");
 
-        jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Modelo:");
 
-        jLabel5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Placa:");
 
-        jLabel6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Cor:");
 
-        jLabel7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Ano de Lançamento:");
 
-        jLabel8.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("Ano de Aquisição:");
 
-        jLabel9.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setText("Tipo de Combustível:");
 
-        jLabel10.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setText("Quantidade:");
 
-        jLabel11.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel11.setText("Acessórios:");
 
-        jLabel12.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel12.setText("Observações:");
 
         jButton1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -119,36 +123,40 @@ public class F_EditarVeiculo extends javax.swing.JFrame {
             }
         });
 
+        in_marca.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         in_marca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 in_marcaActionPerformed(evt);
             }
         });
 
-        in_placa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                in_placaActionPerformed(evt);
-            }
-        });
+        in_modelo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        in_anoAquisicao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                in_anoAquisicaoActionPerformed(evt);
-            }
-        });
+        in_cor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         in_observacoes.setColumns(20);
+        in_observacoes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         in_observacoes.setRows(5);
         jScrollPane1.setViewportView(in_observacoes);
 
         jLabel13.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel13.setText("litros");
 
-        jLabel14.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel14.setText("Capacidade do tanque:");
 
         jLabel15.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel15.setText("litros");
+
+        f_capaci.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        f_quant.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        in_lancamento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        in_placa.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        in_anoAquisicao.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -173,8 +181,6 @@ public class F_EditarVeiculo extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(in_marca, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(in_placa, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(in_anoLancamento, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(f_capaci, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
@@ -182,9 +188,11 @@ public class F_EditarVeiculo extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel15)
-                                            .addComponent(jLabel13))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jLabel13)))
+                                    .addComponent(in_lancamento)
+                                    .addComponent(in_placa))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel6)
@@ -197,10 +205,13 @@ public class F_EditarVeiculo extends javax.swing.JFrame {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel9)
                                             .addComponent(jLabel8))
-                                        .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(in_anoAquisicao)
-                                            .addComponent(in_tipoComb, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(18, 18, 18)
+                                                .addComponent(in_tipoComb, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(20, 20, 20)
+                                                .addComponent(in_anoAquisicao, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel11)
                                         .addGap(78, 78, 78)
@@ -239,7 +250,7 @@ public class F_EditarVeiculo extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(in_anoLancamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(in_lancamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel14)
@@ -256,9 +267,9 @@ public class F_EditarVeiculo extends javax.swing.JFrame {
                             .addComponent(in_cor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(in_anoAquisicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(in_anoAquisicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -277,7 +288,7 @@ public class F_EditarVeiculo extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
                 .addComponent(jButton1)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
@@ -298,7 +309,7 @@ public class F_EditarVeiculo extends javax.swing.JFrame {
         v.setModelo(in_modelo.getText());
         v.setPlaca(in_placa.getText());
         v.setCor(in_cor.getText());
-        v.setAnoLancamento(Integer.parseInt(in_anoLancamento.getText().trim()));
+        v.setAnoLancamento(Integer.parseInt(in_lancamento.getText().trim()));
         v.setAnoAquisicao(Integer.parseInt(in_anoAquisicao.getText().trim()));
         v.setCapacidadeTanque(Double.parseDouble(f_capaci.getText()));
         v.setTipoComb(in_tipoComb.getText());
@@ -308,14 +319,6 @@ public class F_EditarVeiculo extends javax.swing.JFrame {
         veiculoDAO.editar(v);
         setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void in_anoAquisicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_in_anoAquisicaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_in_anoAquisicaoActionPerformed
-
-    private void in_placaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_in_placaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_in_placaActionPerformed
     public void preencheCampos(int id){
         VeiculoDAO veiculoDAO = new VeiculoDAO();
         Veiculo v = new Veiculo();
@@ -326,7 +329,7 @@ public class F_EditarVeiculo extends javax.swing.JFrame {
         in_modelo.setText(v.getModelo());
         in_placa.setText(v.getPlaca());
         in_cor.setText(v.getCor());
-        in_anoLancamento.setText(String.valueOf(v.getAnoLancamento()));
+        in_lancamento.setText(String.valueOf(v.getAnoLancamento()));
         in_anoAquisicao.setText(String.valueOf(v.getAnoAquisicao()));
         f_capaci.setText(String.valueOf(v.getCapacidadeTanque()));
         in_tipoComb.setText(v.getTipoComb());
@@ -373,13 +376,13 @@ public class F_EditarVeiculo extends javax.swing.JFrame {
     private javax.swing.JTextField f_capaci;
     private javax.swing.JTextField f_quant;
     private javax.swing.JTextField in_acessorios;
-    private javax.swing.JTextField in_anoAquisicao;
-    private javax.swing.JTextField in_anoLancamento;
+    private javax.swing.JFormattedTextField in_anoAquisicao;
     private javax.swing.JTextField in_cor;
+    private javax.swing.JFormattedTextField in_lancamento;
     private javax.swing.JTextField in_marca;
     private javax.swing.JTextField in_modelo;
     private javax.swing.JTextArea in_observacoes;
-    private javax.swing.JTextField in_placa;
+    private javax.swing.JFormattedTextField in_placa;
     private javax.swing.JTextField in_tipoComb;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
