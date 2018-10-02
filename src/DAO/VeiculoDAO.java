@@ -53,7 +53,7 @@ public class VeiculoDAO {
          List<Veiculo> veiculos = new ArrayList<>();
          try {
             if(valor ==0){
-                PreparedStatement stmt = conn.prepareStatement("SELECT * FROM t_veiculo WHERE marca LIKE ? AND locado=? AND t_veiculo.idAdmin = ?;");
+                PreparedStatement stmt = conn.prepareStatement("SELECT * FROM t_veiculo WHERE marca LIKE ? AND locado=? AND t_veiculo.idAdmin = ? ORDER BY marca;");
                 stmt.setString(1, busca+"%");  
                 stmt.setBoolean(2, locado);
                 stmt.setInt(3, idAdmin);
@@ -78,7 +78,7 @@ public class VeiculoDAO {
              }
              stmt.close();
             } else if(valor == 1){
-                PreparedStatement stmt = conn.prepareStatement("SELECT * FROM t_veiculo WHERE modelo LIKE ? AND locado=? AND t_veiculo.idAdmin = ?;");
+                PreparedStatement stmt = conn.prepareStatement("SELECT * FROM t_veiculo WHERE modelo LIKE ? AND locado=? AND t_veiculo.idAdmin = ? ORDER BY modelo;");
                 stmt.setString(1, busca+"%");
                 stmt.setBoolean(2, locado);
                 stmt.setInt(3, idAdmin);
@@ -104,7 +104,7 @@ public class VeiculoDAO {
              }
              stmt.close();
             }else if(valor == 2){
-                PreparedStatement stmt = conn.prepareStatement("SELECT * FROM t_veiculo WHERE cor LIKE ? AND locado=? AND t_veiculo.idAdmin = ?;");
+                PreparedStatement stmt = conn.prepareStatement("SELECT * FROM t_veiculo WHERE cor LIKE ? AND locado=? AND t_veiculo.idAdmin = ? ORDER BY cor;");
                 stmt.setString(1, busca+"%"); 
                 stmt.setBoolean(2, locado);
                 stmt.setInt(3, idAdmin);
@@ -130,7 +130,7 @@ public class VeiculoDAO {
              }
              stmt.close();
             }else if(valor == 3){
-                PreparedStatement stmt = conn.prepareStatement("SELECT * FROM t_veiculo WHERE anoLancamento LIKE ? AND locado=? AND t_veiculo.idAdmin = ?;");
+                PreparedStatement stmt = conn.prepareStatement("SELECT * FROM t_veiculo WHERE anoLancamento LIKE ? AND locado=? AND t_veiculo.idAdmin = ? ORDER BY anoLancamento;");
                 stmt.setString(1, busca+"%");
                 stmt.setBoolean(2, locado);
                 stmt.setInt(3, idAdmin);
@@ -229,6 +229,23 @@ public class VeiculoDAO {
             throw new RuntimeException(ex);
         }
     }
+    public boolean buscaPlaca(String placa){
+        boolean retorno = false;
+        try{
+            PreparedStatement stmt = conn.prepareStatement("SELECT placa FROM t_veiculo WHERE placa=?;");
+            stmt.setString(1, placa);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next())
+                retorno = true;
+            else {
+                retorno = false;
+            }
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro!");
+            throw new RuntimeException(ex);   
+        }
+        return retorno;
+    }     
 }
     
  

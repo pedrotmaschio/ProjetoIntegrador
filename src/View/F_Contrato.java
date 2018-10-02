@@ -38,34 +38,46 @@ public class F_Contrato extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Contrato de Locação");
+        setResizable(false);
 
         jButton1.setBackground(new java.awt.Color(21, 190, 4));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setText("GERAR CONTRATO");
+        jButton1.setText("GERAR COMPROVANTE");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setText("Comprovante de Locação");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(122, 122, 122)
-                .addComponent(jButton1)
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addContainerGap(90, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(82, 82, 82))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(66, 66, 66))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(116, 116, 116)
+                .addGap(21, 21, 21)
+                .addComponent(jLabel1)
+                .addGap(76, 76, 76)
                 .addComponent(jButton1)
-                .addContainerGap(127, Short.MAX_VALUE))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
 
         pack();
@@ -75,7 +87,7 @@ public class F_Contrato extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         LocacaoDAO locacaoDAO = new LocacaoDAO();
-        locacaoDAO.Locar(idAdmin, idVeiculo, l.getDataSaida(), l.getDataDevolucao(), l.getHorarioSaida());
+        locacaoDAO.Locar(idVeiculo);
         
         GeracaoPDF pdf = new GeracaoPDF();
         String url = "/";
@@ -93,9 +105,10 @@ public class F_Contrato extends javax.swing.JFrame {
                 url = seleciona.getSelectedFile().getAbsolutePath();
             }
                 
-            pdf.criarPdf((url+"\\Contrato.pdf"), l);
+            pdf.criarPdf((url+"\\Comprovante.pdf"), l);
             JOptionPane.showMessageDialog(null, "Contrato gerado com sucesso!");
         }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro ao gerar contrato!");
             throw new RuntimeException(ex);
         }
         dispose();
@@ -139,5 +152,6 @@ public class F_Contrato extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

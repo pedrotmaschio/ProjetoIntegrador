@@ -47,6 +47,8 @@ public class AdministradorDAO {
             else {
                 retorno = false;
             }
+            stmt.close();
+            rs.close();
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null, "Ocorreu um erro ao logar!");
         }
@@ -64,6 +66,8 @@ public class AdministradorDAO {
             else {
                 retorno = false;
             }
+            stmt.close();
+            rs.close();
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null, "Ocorreu um erro ao logar!");
         }
@@ -78,6 +82,8 @@ public class AdministradorDAO {
            while(rs.next()){
                id = rs.getInt("id");
            }
+           stmt.close();
+           rs.close();
        }catch(Exception ex){
            throw new RuntimeException();
        }
@@ -98,10 +104,43 @@ public class AdministradorDAO {
                a.setEmail(rs.getString("email"));
                a.setNomeCompanhia(rs.getString("companhia"));
            }
+           stmt.close();
+           rs.close();
        }
        catch(Exception ex){
            throw new RuntimeException(ex);
        }
        return a;
    }
+    public boolean buscaCNPJ(String cnpj){
+        boolean retorno = false;
+        try{
+            PreparedStatement stmt = conn.prepareStatement("SELECT cnpj FROM t_admin WHERE cnpj=?;");
+            stmt.setString(1, cnpj);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next())
+                retorno = true;
+            else {
+                retorno = false;
+            }
+            stmt.close();
+            rs.close();
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro!");
+            throw new RuntimeException(ex);   
+        } 
+        return retorno;
+    }
+    public void atualizaSenha(String senha, String cnpj){
+        try {
+            PreparedStatement stmt = conn.prepareStatement("UPDATE t_admin SET senha=? WHERE CNPJ=?");
+            stmt.setString(1, senha);
+            stmt.setString(2, cnpj);
+            stmt.executeUpdate();
+            stmt.close();
+        } catch(Exception ex){
+            JOptionPane.showMessageDialog(null,"Ocorreu um erro!");
+            throw new RuntimeException(ex);
+        }
+    }
 }

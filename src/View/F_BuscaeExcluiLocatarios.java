@@ -48,6 +48,7 @@ public class F_BuscaeExcluiLocatarios extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Buscar Locatários");
@@ -218,6 +219,7 @@ public class F_BuscaeExcluiLocatarios extends javax.swing.JFrame {
             DefaultTableModel tabela = (DefaultTableModel) t_locatarios.getModel();
             int id = (int) tabela.getValueAt(linha, 0);
             F_EditarLocatario editar = new F_EditarLocatario(id, idAdmin);
+            editar.preencheCampos();
             editar.setVisible(true);
             tabela.setRowCount(0);
         }        // TODO add your handling code here:

@@ -13,7 +13,31 @@ public class Locacao {
     // locadora
     String nomeLocadora, enderecoLocadora, cnpjLocadora, emailLocadora;
     // locatario
-    String nomeLocatario, nascLocatario, enderecoLocatario, telefoneLocatario, cnhLocatario, cpfLocatario, emailLocatario;
+    String nomeLocatario, nascLocatario, enderecoLocatario, cidadeLocatario, bairroLocatario, numeroLocatario, telefoneLocatario, cnhLocatario, cpfLocatario, emailLocatario;
+
+    public String getCidadeLocatario() {
+        return cidadeLocatario;
+    }
+
+    public void setCidadeLocatario(String cidadeLocatario) {
+        this.cidadeLocatario = cidadeLocatario;
+    }
+
+    public String getBairroLocatario() {
+        return bairroLocatario;
+    }
+
+    public void setBairroLocatario(String bairroLocatario) {
+        this.bairroLocatario = bairroLocatario;
+    }
+
+    public String getNumeroLocatario() {
+        return numeroLocatario;
+    }
+
+    public void setNumeroLocatario(String numeroLocatario) {
+        this.numeroLocatario = numeroLocatario;
+    }
     // veiculo
     String marca, modelo, cor, tipoComb, placa, anoLancamento;
     double capaciTanque, quantTanque;

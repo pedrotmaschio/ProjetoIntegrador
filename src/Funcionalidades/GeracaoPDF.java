@@ -37,8 +37,8 @@ public class GeracaoPDF {
         
         
         PdfFont titulo = PdfFontFactory.createFont(StandardFonts.TIMES_BOLD);
-        Paragraph ptitulo = new Paragraph("CONTRATO DE LOCAÇÃO").setFont(titulo);
-        ptitulo.setPaddingLeft(180);
+        Paragraph ptitulo = new Paragraph("COMPROVANTE DE LOCAÇÃO").setFont(titulo);
+        ptitulo.setPaddingLeft(140);
         ptitulo.setFontSize(18);
         document.add(ptitulo);
         
@@ -121,7 +121,7 @@ public class GeracaoPDF {
         List<Table> tabelas = new ArrayList<>();
         
         // dados Locadora
-        Table table1 = new Table(new float[] {25, 50}) // in points
+        Table table1 = new Table(new float[] {25, 75}) // in points
         .setWidth(100) //100 pt
         .setFixedLayout();
         table1.setFontSize(10);
@@ -141,7 +141,7 @@ public class GeracaoPDF {
         tabelas.add(table1);
         
         // dados Locatário
-        Table table2 = new Table(new float[] {25, 50}) // in points
+        Table table2 = new Table(new float[] {25, 75}) // in points
         .setWidth(100) //100 pt
         .setFixedLayout();
         table2.setFontSize(10);
@@ -166,7 +166,7 @@ public class GeracaoPDF {
         tabelas.add(table2);
         
         // dados do Veículo
-        Table table3 = new Table(new float[] {25, 50}) // in points
+        Table table3 = new Table(new float[] {25, 75}) // in points
         .setWidth(100) //100 pt
         .setFixedLayout();
         table3.setFontSize(10);
@@ -193,10 +193,10 @@ public class GeracaoPDF {
         tabelas.add(table3);
         
         // dados da Locação
-        Table table4 = new Table(new float[] {25, 50}) // in points
+        Table table4 = new Table(new float[] {25, 75}) // in points
         .setWidth(100) //100 pt
         .setFixedLayout();
-        table4.setFontSize(12);
+        table4.setFontSize(10);
         table4.setWidth(500);
         table4.setFont(marcador);
         

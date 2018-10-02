@@ -56,6 +56,7 @@ public class F_ConsultaVeiculosLocados extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Consulta de Veículos Locados");
         setPreferredSize(new java.awt.Dimension(900, 550));
+        setResizable(false);
 
         jButton3.setBackground(new java.awt.Color(255, 0, 0));
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N

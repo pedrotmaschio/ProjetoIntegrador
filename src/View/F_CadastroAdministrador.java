@@ -66,6 +66,7 @@ public class F_CadastroAdministrador extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Administrador");
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Cadastro de Administrador");
@@ -200,20 +201,29 @@ public class F_CadastroAdministrador extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+      
         if(Validacao.validarCNPJ(f_CNPJ.getText())){
-            Administrador a = new Administrador();
-            a.setNome(f_nome.getText().trim());
-            a.setNascimento(f_nascimento.getText().trim());
-            a.setCNPJ(f_CNPJ.getText().trim());
-            a.setNomeCompanhia(f_nomeCompanhia.getText().trim());
-            a.setEnderecoCompanhia(f_endereco.getText().trim());
-            a.setEmail(f_email.getText().trim());
-            String senha = new String(f_senha.getPassword());
-            a.setSenha(senha);
+            if(!administradorDAO.buscaCNPJ(f_CNPJ.getText())){
+                if(Validacao.validarEmail(f_email.getText().trim())){
+                    Administrador a = new Administrador();
+                    a.setNome(f_nome.getText().trim());
+                    a.setNascimento(f_nascimento.getText().trim());
+                    a.setCNPJ(f_CNPJ.getText().trim());
+                    a.setNomeCompanhia(f_nomeCompanhia.getText().trim());
+                    a.setEnderecoCompanhia(f_endereco.getText().trim());
+                    a.setEmail(f_email.getText().trim());
+                    String senha = new String(f_senha.getPassword());
+                    a.setSenha(senha);
         
-            administradorDAO.cadastro(a);
-            JOptionPane.showMessageDialog(null, "Administrador cadastrado com sucesso!");
-            dispose();
+                    administradorDAO.cadastro(a);
+                    JOptionPane.showMessageDialog(null, "Administrador cadastrado com sucesso!");
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Informe um e-mail válido!");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Um administrador já se encontra cadastrado no sistema sob esse mesmo CNPJ!");
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Informe um CNPJ válido!");
         }

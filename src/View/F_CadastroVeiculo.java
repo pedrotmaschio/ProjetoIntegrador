@@ -18,6 +18,7 @@ import javax.swing.text.MaskFormatter;
  * @author Pedro Maschio
  */
 public class F_CadastroVeiculo extends javax.swing.JFrame {
+    VeiculoDAO veiculoDAO;
     static int idAdmin;
     MaskFormatter mascaraPlaca, mascaraAnoLancamento, mascaraQuantCombustivel;
     MaskFormatter mascaraAnoAquisicao, mascaraCapaciTanque;
@@ -38,6 +39,7 @@ public class F_CadastroVeiculo extends javax.swing.JFrame {
         defineMascaras();
         initComponents();
         this.idAdmin = idAdmin;
+        veiculoDAO = new VeiculoDAO();
     }
 
     /**
@@ -77,9 +79,11 @@ public class F_CadastroVeiculo extends javax.swing.JFrame {
         f_anoAquisicao = new javax.swing.JFormattedTextField(mascaraAnoAquisicao);
         f_capaci = new javax.swing.JFormattedTextField();
         f_quant = new javax.swing.JFormattedTextField();
+        jLabel15 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Veículo");
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Marca:");
@@ -167,10 +171,20 @@ public class F_CadastroVeiculo extends javax.swing.JFrame {
 
         f_quant.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
+        jLabel15.setText("Opcional");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(335, 335, 335))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(403, 403, 403)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,6 +196,9 @@ public class F_CadastroVeiculo extends javax.swing.JFrame {
                     .addComponent(jLabel11))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel15)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(Combo_TipoComb, 0, 180, Short.MAX_VALUE)
@@ -221,14 +238,6 @@ public class F_CadastroVeiculo extends javax.swing.JFrame {
                             .addComponent(f_anoAquisicao, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(f_modelo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(64, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(335, 335, 335))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(403, 403, 403)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -272,7 +281,9 @@ public class F_CadastroVeiculo extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(90, 90, 90)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel15)
+                .addGap(70, 70, 70)
                 .addComponent(jButton1)
                 .addGap(37, 37, 37))
         );
@@ -284,8 +295,11 @@ public class F_CadastroVeiculo extends javax.swing.JFrame {
     public boolean validar(){
         String marca = f_marca.getText().trim();
         String modelo = f_modelo.getText().trim();
-        if(marca.equals("") || modelo.equals("")) {
-            JOptionPane.showMessageDialog(null, "Há campos não preenchidos!");
+        String placa = f_placa.getText();
+        String quant = f_quant.getText().trim();
+        String capaci = f_capaci.getText().trim();
+        
+        if(marca.equals("") || modelo.equals("") || placa.equals("") || quant.equals("") || capaci.equals("")) {
             return false;
         }
         else 
@@ -294,40 +308,46 @@ public class F_CadastroVeiculo extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         if(validar()){
-            Veiculo v = new Veiculo();
-            v.setMarca(f_marca.getText().trim());
-            v.setModelo(f_modelo.getText().trim());
-            v.setPlaca(f_placa.getText());
-            v.setCor(f_cor.getText().trim());
-            v.setAnoLancamento(Integer.parseInt(f_anoLancamento.getText()));
-            v.setAnoAquisicao(Integer.parseInt(f_anoAquisicao.getText()));
+            if(!veiculoDAO.buscaPlaca(f_placa.getText())){
+                Veiculo v = new Veiculo();
+                v.setMarca(f_marca.getText().trim());
+                v.setModelo(f_modelo.getText().trim());
+                v.setPlaca(f_placa.getText());
+                v.setCor(f_cor.getText().trim());
+                v.setAnoLancamento(Integer.parseInt(f_anoLancamento.getText()));
+                v.setAnoAquisicao(Integer.parseInt(f_anoAquisicao.getText()));
         
-            int tipoComb = Combo_TipoComb.getSelectedIndex();
-            if(tipoComb == 0)
-                v.setTipoComb("Gasolina");
-            else if(tipoComb == 1)
-                v.setTipoComb("Álcool");
-            else if(tipoComb == 2)
-                v.setTipoComb("Flex");
+                int tipoComb = Combo_TipoComb.getSelectedIndex();
+                if(tipoComb == 0)
+                    v.setTipoComb("Gasolina");
+                else if(tipoComb == 1)
+                    v.setTipoComb("Álcool");
+                else if(tipoComb == 2)
+                    v.setTipoComb("Flex");
         
-            v.setQuantComb(Double.parseDouble(f_quant.getText()));
+                v.setQuantComb(Double.parseDouble(f_quant.getText()));
         
-            if(CheckBox_GPS.isSelected() && CheckBox_Cadeirinha.isSelected()){
-                v.setAcessorios("GPS e Cadeirinha para Bebê");
-            } else if(CheckBox_GPS.isSelected()){
-                v.setAcessorios("GPS");
-            } else if(CheckBox_Cadeirinha.isSelected()){
-                v.setAcessorios("Cadeirinha para Bebê");
+                if(CheckBox_GPS.isSelected() && CheckBox_Cadeirinha.isSelected()){
+                    v.setAcessorios("GPS e Cadeirinha para Bebê");
+                } else if(CheckBox_GPS.isSelected()){
+                    v.setAcessorios("GPS");
+                } else if(CheckBox_Cadeirinha.isSelected()){
+                   v.setAcessorios("Cadeirinha para Bebê");
+                } else {
+                    v.setAcessorios("Nenhum acessório no veículo");
+                }
+        
+                v.setObservacao(f_observacao.getText().trim());
+                v.setCapacidadeTanque(Double.parseDouble(f_capaci.getText()));
+                v.setIdAdmin(idAdmin);
+                VeiculoDAO veiculo = new VeiculoDAO();
+                veiculo.create(v);
+                dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Um veículo já se encontra cadastrado no sistema sob essa mesma placa!");                  
+                }
             } else {
-                v.setAcessorios("Nenhum acessório no veículo");
-            }
-        
-            v.setObservacao(f_observacao.getText().trim());
-            v.setCapacidadeTanque(Double.parseDouble(f_capaci.getText()));
-            v.setIdAdmin(idAdmin);
-            VeiculoDAO veiculo = new VeiculoDAO();
-            veiculo.create(v);
-            dispose();
+                JOptionPane.showMessageDialog(null, "Há campos não preenchidos!");           
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -390,6 +410,7 @@ public class F_CadastroVeiculo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

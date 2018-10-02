@@ -24,7 +24,7 @@ public class LocatarioDAO {
     
     public void create(Locatario l){
         try {
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO t_locatario(idAdmin, nomeCompleto, dataNasc, cnh, endereco, email, telefone, cpf) VALUES(?,?,?,?,?,?,?,?);");
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO t_locatario(idAdmin, nomeCompleto, dataNasc, cnh, endereco, email, telefone, cpf, cidade, bairro, numero) VALUES(?,?,?,?,?,?,?,?,?,?,?);");
             stmt.setInt(1, l.getIdAdmin());
             stmt.setString(2, l.getNomeCompleto());
             stmt.setString(3, l.getNascimento());
@@ -33,6 +33,9 @@ public class LocatarioDAO {
             stmt.setString(6, l.getEmail());
             stmt.setString(7, l.getTelefone());
             stmt.setString(8, l.getCpf());
+            stmt.setString(9, l.getCidade());
+            stmt.setString(10, l.getBairro());
+            stmt.setString(11, l.getNumero());
             stmt.executeUpdate();
             stmt.close();
             
@@ -59,6 +62,9 @@ public class LocatarioDAO {
                 locatario.setNascimento(rs.getString("dataNasc"));
                 locatario.setNomeCompleto(rs.getString("nomeCompleto"));
                 locatario.setTelefone(rs.getString("telefone"));
+                locatario.setCidade(rs.getString("cidade"));
+                locatario.setBairro(rs.getString("bairro"));
+                locatario.setNumero(rs.getString("numero"));
                 locatario.setId(rs.getInt("id"));
                 locatario.setCpf(rs.getString("cpf"));
                 locatarios.add(locatario);
@@ -74,7 +80,7 @@ public class LocatarioDAO {
        public Locatario buscar(int id, int idAdmin){
         Locatario l = new Locatario();
         try {    
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM t_locatario WHERE id = ? AND t_locatario.idAdmin = ?;");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM t_locatario WHERE id = ? AND t_locatario.idAdmin = ? ORDER BY nomeCompleto;");
             stmt.setInt(1, id);  
             stmt.setInt(2, idAdmin);
             ResultSet rs = stmt.executeQuery();
@@ -85,6 +91,9 @@ public class LocatarioDAO {
                 l.setEndereco(rs.getString("endereco"));
                 l.setNascimento(rs.getString("dataNasc"));
                 l.setNomeCompleto(rs.getString("nomeCompleto"));
+                l.setCidade(rs.getString("cidade"));
+                l.setBairro(rs.getString("bairro"));
+                l.setNumero(rs.getString("numero"));
                 l.setTelefone(rs.getString("telefone"));
                 l.setId(rs.getInt("id"));
                 l.setCpf(rs.getString("cpf"));
@@ -112,7 +121,7 @@ public class LocatarioDAO {
        public void editar(Locatario l){
         try {
             
-            PreparedStatement stmt = conn.prepareStatement("UPDATE t_locatario SET nomeCompleto=?,dataNasc=?,cnh=?,endereco=?,email=?,cpf=?,telefone=? WHERE id=? AND t_locatario.idAdmin = ?;");
+            PreparedStatement stmt = conn.prepareStatement("UPDATE t_locatario SET nomeCompleto=?,dataNasc=?,cnh=?,endereco=?,email=?,cpf=?,telefone=?,cidade=?,bairro=?,numero=? WHERE id=? AND t_locatario.idAdmin = ?;");
             stmt.setString(1, l.getNomeCompleto());
             stmt.setString(2, l.getNascimento());
             stmt.setString(3, l.getCnh());
@@ -120,8 +129,11 @@ public class LocatarioDAO {
             stmt.setString(5, l.getEmail());
             stmt.setString(6, l.getCpf());
             stmt.setString(7, l.getTelefone());
-            stmt.setInt(8, l.getId());
-            stmt.setInt(9, l.getIdAdmin());
+            stmt.setString(8, l.getCidade());
+            stmt.setString(9, l.getBairro());
+            stmt.setString(10, l.getNumero());
+            stmt.setInt(11, l.getId());
+            stmt.setInt(12, l.getIdAdmin());
             stmt.executeUpdate();
             stmt.close();
 
@@ -130,4 +142,21 @@ public class LocatarioDAO {
             throw new RuntimeException(ex);
         }
     }
+    public boolean buscaCPF(String cpf){
+        boolean retorno = false;
+        try{
+            PreparedStatement stmt = conn.prepareStatement("SELECT cpf FROM t_locatario WHERE cpf=?;");
+            stmt.setString(1, cpf);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next())
+                retorno = true;
+            else {
+                retorno = false;
+            }
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro!");
+            throw new RuntimeException(ex);   
+        }
+        return retorno;
+    }       
 }

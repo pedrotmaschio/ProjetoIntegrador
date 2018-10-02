@@ -41,6 +41,7 @@ public class F_Principal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Painel");
         setPreferredSize(new java.awt.Dimension(1200, 720));
+        setResizable(false);
 
         jButton2.setBackground(new java.awt.Color(0, 136, 136));
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N

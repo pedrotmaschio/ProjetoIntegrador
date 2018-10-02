@@ -34,6 +34,7 @@ public class F_GerenciarLocatarios extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gerenciar Locatários");
+        setResizable(false);
 
         jButton1.setBackground(new java.awt.Color(0, 136, 136));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
