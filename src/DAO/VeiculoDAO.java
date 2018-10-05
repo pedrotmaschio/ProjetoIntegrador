@@ -34,9 +34,9 @@ public class VeiculoDAO {
             stmt.setString(5, v.getCor());
             stmt.setInt(6, v.getAnoLancamento());
             stmt.setInt(7, v.getAnoAquisicao());
-            stmt.setDouble(8,v.getCapacidadeTanque());
+            stmt.setInt(8,v.getCapacidadeTanque());
             stmt.setString(9, v.getTipoComb());
-            stmt.setDouble(10, v.getQuantComb());
+            stmt.setInt(10, v.getQuantComb());
             stmt.setString(11, v.getAcessorios());
             stmt.setString(12, v.getObservacao());
             stmt.setBoolean(13, v.isLocado());
@@ -68,9 +68,9 @@ public class VeiculoDAO {
                     v.setCor(rs.getString("cor"));
                     v.setAnoLancamento(rs.getInt("anoLancamento"));
                     v.setAnoAquisicao(rs.getInt("anoAquisicao"));
-                    v.setCapacidadeTanque(rs.getDouble("capacidadeTanque"));
+                    v.setCapacidadeTanque(rs.getInt("capacidadeTanque"));
                     v.setTipoComb(rs.getString("tipoCombustivel"));
-                    v.setQuantComb(rs.getDouble("quantCombustivel"));
+                    v.setQuantComb(rs.getInt("quantCombustivel"));
                     v.setAcessorios(rs.getString("acessorios"));
                     v.setObservacao(rs.getString("observacao"));
                  
@@ -94,9 +94,9 @@ public class VeiculoDAO {
                     v.setCor(rs.getString("cor"));
                     v.setAnoLancamento(rs.getInt("anoLancamento"));
                     v.setAnoAquisicao(rs.getInt("anoAquisicao"));
-                    v.setCapacidadeTanque(rs.getDouble("capacidadeTanque"));
+                    v.setCapacidadeTanque(rs.getInt("capacidadeTanque"));
                     v.setTipoComb(rs.getString("tipoCombustivel"));
-                    v.setQuantComb(rs.getDouble("quantCombustivel"));
+                    v.setQuantComb(rs.getInt("quantCombustivel"));
                     v.setAcessorios(rs.getString("acessorios"));
                     v.setObservacao(rs.getString("observacao"));
                  
@@ -120,9 +120,9 @@ public class VeiculoDAO {
                     v.setCor(rs.getString("cor"));
                     v.setAnoLancamento(rs.getInt("anoLancamento"));
                     v.setAnoAquisicao(rs.getInt("anoAquisicao"));
-                    v.setCapacidadeTanque(rs.getDouble("capacidadeTanque"));
+                    v.setCapacidadeTanque(rs.getInt("capacidadeTanque"));
                     v.setTipoComb(rs.getString("tipoCombustivel"));
-                    v.setQuantComb(rs.getDouble("quantCombustivel"));
+                    v.setQuantComb(rs.getInt("quantCombustivel"));
                     v.setAcessorios(rs.getString("acessorios"));
                     v.setObservacao(rs.getString("observacao"));
                  
@@ -146,9 +146,9 @@ public class VeiculoDAO {
                     v.setCor(rs.getString("cor"));
                     v.setAnoLancamento(rs.getInt("anoLancamento"));
                     v.setAnoAquisicao(rs.getInt("anoAquisicao"));
-                    v.setCapacidadeTanque(rs.getDouble("capacidadeTanque"));
+                    v.setCapacidadeTanque(rs.getInt("capacidadeTanque"));
                     v.setTipoComb(rs.getString("tipoCombustivel"));
-                    v.setQuantComb(rs.getDouble("quantCombustivel"));
+                    v.setQuantComb(rs.getInt("quantCombustivel"));
                     v.setAcessorios(rs.getString("acessorios"));
                     v.setObservacao(rs.getString("observacao"));
                  
@@ -178,9 +178,9 @@ public class VeiculoDAO {
                 v.setCor(rs.getString("cor"));
                 v.setAnoLancamento(rs.getInt("anoLancamento"));
                 v.setAnoAquisicao(rs.getInt("anoAquisicao"));
-                v.setCapacidadeTanque(rs.getDouble("capacidadeTanque"));
+                v.setCapacidadeTanque(rs.getInt("capacidadeTanque"));
                 v.setTipoComb(rs.getString("tipoCombustivel"));
-                v.setQuantComb(rs.getDouble("quantCombustivel"));
+                v.setQuantComb(rs.getInt("quantCombustivel"));
                 v.setAcessorios(rs.getString("acessorios"));   
                 v.setObservacao(rs.getString("observacao"));
              }

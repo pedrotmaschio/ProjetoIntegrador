@@ -237,11 +237,12 @@ public class F_CadastroLocatario extends javax.swing.JFrame {
                     .addComponent(f_sobrenome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(f_telefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9)
-                    .addComponent(f_nascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(f_telefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel9)
+                        .addComponent(f_nascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -281,11 +282,29 @@ public class F_CadastroLocatario extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    
+    public boolean validar(){
+        String nome = f_nome.getText().trim();
+        String sobrenome = f_sobrenome.getText().trim();
+        String nascimento = f_nascimento.getText();
+        String telefone = f_telefone.getText().trim();
+        String cnh = f_cnh.getText().trim();
+        String cpf = f_cpf.getText().trim();
+        String cidade = f_cidade.getText().trim();
+        String email = f_email.getText().trim();
+        String endereco = f_endereco.getText().trim();
+        String bairro = f_bairro.getText().trim();
+        String numero = f_numero.getText().trim();
+        
+        if(nome.equals("") || sobrenome.equals("") || nascimento.equals("  /  /    ") || telefone.equals("") || cidade.equals("") || email.equals("") || endereco.equals("") || bairro.equals("") && (!CheckBox_SN.isSelected() && numero.equals(""))) {
+            return false;
+        }
+        else 
+            return true;
+    }
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
+    if(validar()){
         if(Validacao.validarCPF(f_cpf.getText())){
             if(Validacao.validarCNH(f_cnh.getText())){
                 if(!locatarioDAO.buscaCPF(f_cpf.getText())){
@@ -323,6 +342,9 @@ public class F_CadastroLocatario extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Informe um CPF válido!");
         }
+        } else {
+            JOptionPane.showMessageDialog(null, "Há campos não preenchidos!");
+    }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void f_cpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_f_cpfActionPerformed

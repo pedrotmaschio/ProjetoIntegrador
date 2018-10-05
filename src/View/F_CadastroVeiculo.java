@@ -9,6 +9,7 @@ import DAO.VeiculoDAO;
 import Model.Veiculo;
 import javafx.scene.paint.Color;
 import javax.swing.JOptionPane;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.text.MaskFormatter;
@@ -27,6 +28,7 @@ public class F_CadastroVeiculo extends javax.swing.JFrame {
             mascaraPlaca = new MaskFormatter("UUU-####");
             mascaraAnoLancamento = new MaskFormatter("####");
             mascaraAnoAquisicao = new MaskFormatter("####");
+
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null, "Ocorreu um erro!");
             throw new RuntimeException(ex);
@@ -40,6 +42,12 @@ public class F_CadastroVeiculo extends javax.swing.JFrame {
         initComponents();
         this.idAdmin = idAdmin;
         veiculoDAO = new VeiculoDAO();
+        SpinnerNumberModel a = new SpinnerNumberModel();
+        a.setMinimum(0);
+        f_capaci.setModel(a);
+        SpinnerNumberModel b = new SpinnerNumberModel();
+        b.setMinimum(0);
+        f_quant.setModel(b);
     }
 
     /**
@@ -77,9 +85,9 @@ public class F_CadastroVeiculo extends javax.swing.JFrame {
         f_placa = new javax.swing.JFormattedTextField(mascaraPlaca);
         f_anoLancamento = new javax.swing.JFormattedTextField(mascaraAnoLancamento);
         f_anoAquisicao = new javax.swing.JFormattedTextField(mascaraAnoAquisicao);
-        f_capaci = new javax.swing.JFormattedTextField();
-        f_quant = new javax.swing.JFormattedTextField();
         jLabel15 = new javax.swing.JLabel();
+        f_capaci = new javax.swing.JSpinner();
+        f_quant = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Veículo");
@@ -89,8 +97,24 @@ public class F_CadastroVeiculo extends javax.swing.JFrame {
         jLabel1.setText("Marca:");
 
         f_marca.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        f_marca.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                f_marcaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                f_marcaFocusLost(evt);
+            }
+        });
 
         f_modelo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        f_modelo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                f_modeloFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                f_modeloFocusLost(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Modelo:");
@@ -99,6 +123,14 @@ public class F_CadastroVeiculo extends javax.swing.JFrame {
         jLabel4.setText("Placa:");
 
         f_cor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        f_cor.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                f_corFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                f_corFocusLost(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Cor:");
@@ -162,16 +194,56 @@ public class F_CadastroVeiculo extends javax.swing.JFrame {
         jLabel14.setText("Litros");
 
         f_placa.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        f_placa.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                f_placaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                f_placaFocusLost(evt);
+            }
+        });
 
         f_anoLancamento.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        f_anoLancamento.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                f_anoLancamentoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                f_anoLancamentoFocusLost(evt);
+            }
+        });
+        f_anoLancamento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                f_anoLancamentoMouseClicked(evt);
+            }
+        });
+        f_anoLancamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                f_anoLancamentoActionPerformed(evt);
+            }
+        });
 
         f_anoAquisicao.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-
-        f_capaci.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-
-        f_quant.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        f_anoAquisicao.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                f_anoAquisicaoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                f_anoAquisicaoFocusLost(evt);
+            }
+        });
 
         jLabel15.setText("Opcional");
+
+        f_capaci.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        f_capaci.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                f_capaciFocusLost(evt);
+            }
+        });
+
+        f_quant.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        f_quant.setRequestFocusEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -200,31 +272,32 @@ public class F_CadastroVeiculo extends javax.swing.JFrame {
                         .addComponent(jLabel15)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Combo_TipoComb, 0, 180, Short.MAX_VALUE)
-                            .addComponent(f_quant))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel12)
-                        .addGap(238, 238, 238)
+                        .addComponent(Combo_TipoComb, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(f_capaci)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel14)
-                                .addGap(23, 23, 23))
-                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel12)
+                                .addGap(238, 238, 238)
                                 .addComponent(CheckBox_GPS)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(CheckBox_Cadeirinha, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(44, 44, 44))))
+                                .addGap(44, 44, 44))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(275, 275, 275)
+                                .addComponent(f_capaci)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel14)
+                                .addGap(23, 23, 23))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(f_placa, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(f_anoLancamento, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(f_marca, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(f_placa, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(f_anoLancamento, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(f_marca, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(f_quant, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(117, 117, 117)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7)
@@ -244,7 +317,7 @@ public class F_CadastroVeiculo extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(f_marca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(f_modelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -267,16 +340,16 @@ public class F_CadastroVeiculo extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(Combo_TipoComb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13)
-                    .addComponent(f_capaci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14))
+                    .addComponent(jLabel14)
+                    .addComponent(f_capaci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(jLabel12)
-                    .addComponent(f_quant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
                     .addComponent(CheckBox_GPS)
-                    .addComponent(CheckBox_Cadeirinha))
+                    .addComponent(CheckBox_Cadeirinha)
+                    .addComponent(f_quant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11)
@@ -296,9 +369,9 @@ public class F_CadastroVeiculo extends javax.swing.JFrame {
         String marca = f_marca.getText().trim();
         String modelo = f_modelo.getText().trim();
         String placa = f_placa.getText();
-        String quant = f_quant.getText().trim();
-        String capaci = f_capaci.getText().trim();
-        
+        String quant = f_quant.getValue().toString().trim();
+        String capaci = f_capaci.getValue().toString().trim();
+
         if(marca.equals("") || modelo.equals("") || placa.equals("") || quant.equals("") || capaci.equals("")) {
             return false;
         }
@@ -307,46 +380,56 @@ public class F_CadastroVeiculo extends javax.swing.JFrame {
     }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
         if(validar()){
+            
             if(!veiculoDAO.buscaPlaca(f_placa.getText())){
-                Veiculo v = new Veiculo();
-                v.setMarca(f_marca.getText().trim());
-                v.setModelo(f_modelo.getText().trim());
-                v.setPlaca(f_placa.getText());
-                v.setCor(f_cor.getText().trim());
-                v.setAnoLancamento(Integer.parseInt(f_anoLancamento.getText()));
-                v.setAnoAquisicao(Integer.parseInt(f_anoAquisicao.getText()));
+                if(Integer.parseInt(f_anoLancamento.getText()) <= Integer.parseInt(f_anoAquisicao.getText())){
+                if(Integer.parseInt(f_quant.getValue().toString()) <= Integer.parseInt(f_capaci.getValue().toString())){
+                    Veiculo v = new Veiculo();
+                    v.setMarca(f_marca.getText().trim());
+                    v.setModelo(f_modelo.getText().trim());
+                    v.setPlaca(f_placa.getText());
+                    v.setCor(f_cor.getText().trim());
+                    v.setAnoLancamento(Integer.parseInt(f_anoLancamento.getText()));
+                    v.setAnoAquisicao(Integer.parseInt(f_anoAquisicao.getText()));
         
-                int tipoComb = Combo_TipoComb.getSelectedIndex();
-                if(tipoComb == 0)
-                    v.setTipoComb("Gasolina");
-                else if(tipoComb == 1)
-                    v.setTipoComb("Álcool");
-                else if(tipoComb == 2)
-                    v.setTipoComb("Flex");
+                    int tipoComb = Combo_TipoComb.getSelectedIndex();
+                    if(tipoComb == 0)
+                        v.setTipoComb("Gasolina");
+                    else if(tipoComb == 1)
+                        v.setTipoComb("Álcool");
+                    else if(tipoComb == 2)
+                        v.setTipoComb("Flex");
         
-                v.setQuantComb(Double.parseDouble(f_quant.getText()));
+                    v.setQuantComb(Integer.parseInt(f_quant.getValue().toString()));
         
-                if(CheckBox_GPS.isSelected() && CheckBox_Cadeirinha.isSelected()){
-                    v.setAcessorios("GPS e Cadeirinha para Bebê");
-                } else if(CheckBox_GPS.isSelected()){
-                    v.setAcessorios("GPS");
-                } else if(CheckBox_Cadeirinha.isSelected()){
-                   v.setAcessorios("Cadeirinha para Bebê");
+                    if(CheckBox_GPS.isSelected() && CheckBox_Cadeirinha.isSelected()){
+                        v.setAcessorios("GPS e Cadeirinha para Bebê");
+                    } else if(CheckBox_GPS.isSelected()){
+                        v.setAcessorios("GPS");
+                    } else if(CheckBox_Cadeirinha.isSelected()){
+                    v.setAcessorios("Cadeirinha para Bebê");
+                    } else {
+                        v.setAcessorios("Nenhum acessório no veículo");
+                    }
+        
+                    v.setObservacao(f_observacao.getText().trim());
+                    v.setCapacidadeTanque(Integer.parseInt(f_capaci.getValue().toString()));
+                    v.setIdAdmin(idAdmin);
+                    VeiculoDAO veiculo = new VeiculoDAO();
+                    veiculo.create(v);
+                    dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(null,"O ano de lançamento é inferior ao ano de aquisição");
+                    }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "A quantidade de combustível no tanque é superior a sua capacidade");
+                    }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Um veículo já se encontra cadastrado no sistema sob essa mesma placa!");                  
+                    }
                 } else {
-                    v.setAcessorios("Nenhum acessório no veículo");
-                }
-        
-                v.setObservacao(f_observacao.getText().trim());
-                v.setCapacidadeTanque(Double.parseDouble(f_capaci.getText()));
-                v.setIdAdmin(idAdmin);
-                VeiculoDAO veiculo = new VeiculoDAO();
-                veiculo.create(v);
-                dispose();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Um veículo já se encontra cadastrado no sistema sob essa mesma placa!");                  
-                }
-            } else {
                 JOptionPane.showMessageDialog(null, "Há campos não preenchidos!");           
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -354,6 +437,86 @@ public class F_CadastroVeiculo extends javax.swing.JFrame {
     private void CheckBox_CadeirinhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBox_CadeirinhaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CheckBox_CadeirinhaActionPerformed
+
+    private void f_anoLancamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_f_anoLancamentoActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_f_anoLancamentoActionPerformed
+
+    private void f_anoLancamentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_f_anoLancamentoMouseClicked
+         // TODO add your handling code here:
+    }//GEN-LAST:event_f_anoLancamentoMouseClicked
+
+    private void f_marcaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_marcaFocusLost
+        // TODO add your handling code here:
+        if(f_marca.getText().equals("")){
+            f_marca.setBackground(java.awt.Color.getHSBColor(0, 79, 66));
+        }
+    }//GEN-LAST:event_f_marcaFocusLost
+
+    private void f_modeloFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_modeloFocusLost
+        // TODO add your handling code here:
+        if(f_modelo.getText().equals("")){
+            f_modelo.setBackground(java.awt.Color.getHSBColor(0, 79, 66));
+        }
+    }//GEN-LAST:event_f_modeloFocusLost
+
+    private void f_corFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_corFocusLost
+        // TODO add your handling code here:
+        if(f_cor.getText().equals("")){
+            f_cor.setBackground(java.awt.Color.getHSBColor(0, 79, 66));
+        }        
+    }//GEN-LAST:event_f_corFocusLost
+
+    private void f_anoLancamentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_anoLancamentoFocusLost
+        // TODO add your handling code here:
+        if(f_anoLancamento.getText().trim().equals("")){
+            f_anoLancamento.setBackground(java.awt.Color.getHSBColor(0, 79, 66));
+        }
+    }//GEN-LAST:event_f_anoLancamentoFocusLost
+
+    private void f_anoAquisicaoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_anoAquisicaoFocusLost
+        if(f_anoAquisicao.getText().trim().equals("")){
+            f_anoAquisicao.setBackground(java.awt.Color.getHSBColor(0, 79, 66));
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_f_anoAquisicaoFocusLost
+
+    private void f_placaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_placaFocusLost
+
+        if(f_placa.getText().equals("   -    ")){
+            f_placa.setBackground(java.awt.Color.getHSBColor(0, 79, 66));
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_f_placaFocusLost
+
+    private void f_marcaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_marcaFocusGained
+        f_marca.setBackground(java.awt.Color.WHITE);
+    }//GEN-LAST:event_f_marcaFocusGained
+
+    private void f_modeloFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_modeloFocusGained
+        f_modelo.setBackground(java.awt.Color.WHITE);        // TODO add your handling code here:
+    }//GEN-LAST:event_f_modeloFocusGained
+
+    private void f_placaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_placaFocusGained
+        f_placa.setBackground(java.awt.Color.WHITE);        // TODO add your handling code here:
+    }//GEN-LAST:event_f_placaFocusGained
+
+    private void f_corFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_corFocusGained
+        f_cor.setBackground(java.awt.Color.WHITE);        // TODO add your handling code here:
+    }//GEN-LAST:event_f_corFocusGained
+
+    private void f_anoLancamentoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_anoLancamentoFocusGained
+        f_anoLancamento.setBackground(java.awt.Color.WHITE);        // TODO add your handling code here:
+    }//GEN-LAST:event_f_anoLancamentoFocusGained
+
+    private void f_anoAquisicaoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_anoAquisicaoFocusGained
+        // TODO add your handling code here:
+         f_anoAquisicao.setBackground(java.awt.Color.WHITE);
+    }//GEN-LAST:event_f_anoAquisicaoFocusGained
+
+    private void f_capaciFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_capaciFocusLost
+        // TODO add your handling code here:
+         
+    }//GEN-LAST:event_f_capaciFocusLost
 
     /**
      * @param args the command line arguments
@@ -396,13 +559,13 @@ public class F_CadastroVeiculo extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> Combo_TipoComb;
     private javax.swing.JFormattedTextField f_anoAquisicao;
     private javax.swing.JFormattedTextField f_anoLancamento;
-    private javax.swing.JFormattedTextField f_capaci;
+    private javax.swing.JSpinner f_capaci;
     private javax.swing.JTextField f_cor;
     private javax.swing.JTextField f_marca;
     private javax.swing.JTextField f_modelo;
     private javax.swing.JTextArea f_observacao;
     private javax.swing.JFormattedTextField f_placa;
-    private javax.swing.JFormattedTextField f_quant;
+    private javax.swing.JSpinner f_quant;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

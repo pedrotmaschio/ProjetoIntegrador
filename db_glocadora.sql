@@ -32,7 +32,7 @@ create table t_locatario (
     primary key(id),
     foreign key(idAdmin) references t_admin(id)
 );
-
+select * from t_locatario;
 create table t_veiculo (
 	id int unique auto_increment,
     idAdmin int,
@@ -43,14 +43,15 @@ create table t_veiculo (
     anoLancamento varchar(255) not null,
     anoAquisicao varchar(255) not null,
     tipoCombustivel varchar(255) not null,
-    capacidadeTanque double not null,
-    quantCombustivel double not null,
+    capacidadeTanque integer not null,
+    quantCombustivel integer not null,
     acessorios varchar(255) not null,
     locado boolean not null,
     observacao text not null,
     primary key(id),
     foreign key(idAdmin) references t_admin(id)
 );
+
 
 
 

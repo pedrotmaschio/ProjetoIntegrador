@@ -19,8 +19,8 @@ public class Veiculo {
     private int anoLancamento;
     private int anoAquisicao;
     private String tipoComb;
-    private double quantComb;
-    private double capacidadeTanque;
+    private int quantComb;
+    private int capacidadeTanque;
     private String acessorios;
     private String observacao;
     private boolean locado = false;
@@ -32,14 +32,25 @@ public class Veiculo {
     public void setIdAdmin(int idAdmin) {
         this.idAdmin = idAdmin;
     }
-    
-    public double getCapacidadeTanque() {
+
+    public int getQuantComb() {
+        return quantComb;
+    }
+
+    public void setQuantComb(int quantComb) {
+        this.quantComb = quantComb;
+    }
+
+    public int getCapacidadeTanque() {
         return capacidadeTanque;
     }
 
-    public void setCapacidadeTanque(double capacidadeTanque) {
+    public void setCapacidadeTanque(int capacidadeTanque) {
         this.capacidadeTanque = capacidadeTanque;
     }
+    
+
+
 
 
     public String getMarca() {
@@ -114,13 +125,6 @@ public class Veiculo {
         this.tipoComb = tipoComb;
     }
 
-    public double getQuantComb() {
-        return quantComb;
-    }
-
-    public void setQuantComb(double quantComb) {
-        this.quantComb = quantComb;
-    }
 
     public String getAcessorios() {
         return acessorios;
