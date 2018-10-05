@@ -32,7 +32,6 @@ create table t_locatario (
     primary key(id),
     foreign key(idAdmin) references t_admin(id)
 );
-drop table t_locatario;
 
 create table t_veiculo (
 	id int unique auto_increment,

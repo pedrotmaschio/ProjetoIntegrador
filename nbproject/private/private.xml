@@ -5,8 +5,11 @@
         <group>
             <file>file:/C:/Users/PedrodeTôrres/Documents/NetBeansProjects/ProjetoIntegrador/src/View/F_DadosLocacao.java</file>
             <file>file:/C:/Users/PedrodeTôrres/Documents/NetBeansProjects/ProjetoIntegrador/src/View/F_Contrato.java</file>
+            <file>file:/C:/Users/PedrodeTôrres/Documents/NetBeansProjects/ProjetoIntegrador/src/Model/Locatario.java</file>
             <file>file:/C:/Users/PedrodeTôrres/Documents/NetBeansProjects/ProjetoIntegrador/src/Funcionalidades/GeracaoPDF.java</file>
             <file>file:/C:/Users/PedrodeTôrres/Documents/NetBeansProjects/ProjetoIntegrador/src/DAO/LocacaoDAO.java</file>
+            <file>file:/C:/Users/PedrodeTôrres/Documents/NetBeansProjects/ProjetoIntegrador/src/View/F_ConsultaVeiculosLocados.java</file>
+            <file>file:/C:/Users/PedrodeTôrres/Documents/NetBeansProjects/ProjetoIntegrador/src/View/F_Principal.java</file>
         </group>
     </open-files>
 </project-private>
