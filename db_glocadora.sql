@@ -32,7 +32,7 @@ create table t_locatario (
     primary key(id),
     foreign key(idAdmin) references t_admin(id)
 );
-select * from t_locatario;
+
 create table t_veiculo (
 	id int unique auto_increment,
     idAdmin int,

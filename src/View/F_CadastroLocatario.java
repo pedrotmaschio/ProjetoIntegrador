@@ -113,12 +113,44 @@ public class F_CadastroLocatario extends javax.swing.JFrame {
         jLabel8.setText("E-mail:");
 
         f_nome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        f_nome.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                f_nomeFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                f_nomeFocusLost(evt);
+            }
+        });
 
         f_sobrenome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        f_sobrenome.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                f_sobrenomeFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                f_sobrenomeFocusLost(evt);
+            }
+        });
 
         f_cidade.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        f_cidade.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                f_cidadeFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                f_cidadeFocusLost(evt);
+            }
+        });
 
         f_email.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        f_email.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                f_emailFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                f_emailFocusLost(evt);
+            }
+        });
 
         jButton1.setBackground(new java.awt.Color(21, 190, 4));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -130,6 +162,14 @@ public class F_CadastroLocatario extends javax.swing.JFrame {
         });
 
         f_cpf.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        f_cpf.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                f_cpfFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                f_cpfFocusLost(evt);
+            }
+        });
         f_cpf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 f_cpfActionPerformed(evt);
@@ -137,23 +177,63 @@ public class F_CadastroLocatario extends javax.swing.JFrame {
         });
 
         f_nascimento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        f_nascimento.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                f_nascimentoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                f_nascimentoFocusLost(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setText("Telefone:");
 
         f_telefone.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        f_telefone.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                f_telefoneFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                f_telefoneFocusLost(evt);
+            }
+        });
 
         f_cnh.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        f_cnh.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                f_cnhFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                f_cnhFocusLost(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setText("Endereço:");
 
         f_endereco.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        f_endereco.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                f_enderecoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                f_enderecoFocusLost(evt);
+            }
+        });
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel11.setText("Bairro:");
 
         f_bairro.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        f_bairro.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                f_bairroFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                f_bairroFocusLost(evt);
+            }
+        });
 
         f_numero.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -295,7 +375,7 @@ public class F_CadastroLocatario extends javax.swing.JFrame {
         String bairro = f_bairro.getText().trim();
         String numero = f_numero.getText().trim();
         
-        if(nome.equals("") || sobrenome.equals("") || nascimento.equals("  /  /    ") || telefone.equals("") || cidade.equals("") || email.equals("") || endereco.equals("") || bairro.equals("") && (!CheckBox_SN.isSelected() && numero.equals(""))) {
+        if(nome.equals("") || sobrenome.equals("") || nascimento.equals("  /  /    ") || telefone.equals("") || cidade.equals("") || email.equals("") || endereco.equals("") || bairro.equals("") || (!CheckBox_SN.isSelected() && numero.equals(""))) {
             return false;
         }
         else 
@@ -359,6 +439,113 @@ public class F_CadastroLocatario extends javax.swing.JFrame {
         } else
             f_numero.setEnabled(true);
     }//GEN-LAST:event_CheckBox_SNActionPerformed
+
+    private void f_nomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_nomeFocusLost
+        if(f_nome.getText().trim().equals("")){
+            f_nome.setBackground(java.awt.Color.getHSBColor(0, 79, 66));
+        }          
+// TODO add your handling code here:
+    }//GEN-LAST:event_f_nomeFocusLost
+
+    private void f_sobrenomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_sobrenomeFocusLost
+        // TODO add your handling code here:
+        if(f_sobrenome.getText().trim().equals("")){
+            f_sobrenome.setBackground(java.awt.Color.getHSBColor(0, 79, 66));
+        }  
+    }//GEN-LAST:event_f_sobrenomeFocusLost
+
+    private void f_nascimentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_nascimentoFocusLost
+        // TODO add your handling code here:
+        if(f_nascimento.getText().equals("  /  /    ")){
+            f_nascimento.setBackground(java.awt.Color.getHSBColor(0, 79, 66));
+        }  
+    }//GEN-LAST:event_f_nascimentoFocusLost
+
+    private void f_telefoneFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_telefoneFocusLost
+
+        if(f_telefone.getText().equals("(  )     -    ")){
+            f_telefone.setBackground(java.awt.Color.getHSBColor(0, 79, 66));
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_f_telefoneFocusLost
+
+    private void f_cnhFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_cnhFocusLost
+
+        if(f_cnh.getText().trim().equals("")){
+            f_cnh.setBackground(java.awt.Color.getHSBColor(0, 79, 66));
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_f_cnhFocusLost
+
+    private void f_cpfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_cpfFocusLost
+
+        if(f_cpf.getText().equals("   .   .   -  ")){
+            f_cpf.setBackground(java.awt.Color.getHSBColor(0, 79, 66));
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_f_cpfFocusLost
+
+    private void f_cidadeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_cidadeFocusLost
+
+        if(f_cidade.getText().trim().equals("")){
+            f_cidade.setBackground(java.awt.Color.getHSBColor(0, 79, 66));
+        }               // TODO add your handling code here:
+    }//GEN-LAST:event_f_cidadeFocusLost
+
+    private void f_emailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_emailFocusLost
+        if(f_email.getText().trim().equals("")){
+            f_email.setBackground(java.awt.Color.getHSBColor(0, 79, 66));
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_f_emailFocusLost
+
+    private void f_enderecoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_enderecoFocusLost
+        if(f_endereco.getText().trim().equals("")){
+            f_endereco.setBackground(java.awt.Color.getHSBColor(0, 79, 66));
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_f_enderecoFocusLost
+
+    private void f_bairroFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_bairroFocusLost
+        if(f_bairro.getText().trim().equals("")){
+            f_bairro.setBackground(java.awt.Color.getHSBColor(0, 79, 66));
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_f_bairroFocusLost
+
+    private void f_nomeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_nomeFocusGained
+        f_nome.setBackground(java.awt.Color.WHITE);         // TODO add your handling code here:
+    }//GEN-LAST:event_f_nomeFocusGained
+
+    private void f_sobrenomeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_sobrenomeFocusGained
+        f_sobrenome.setBackground(java.awt.Color.WHITE);         // TODO add your handling code here:
+    }//GEN-LAST:event_f_sobrenomeFocusGained
+
+    private void f_nascimentoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_nascimentoFocusGained
+        f_nascimento.setBackground(java.awt.Color.WHITE);         // TODO add your handling code here:
+    }//GEN-LAST:event_f_nascimentoFocusGained
+
+    private void f_telefoneFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_telefoneFocusGained
+        f_telefone.setBackground(java.awt.Color.WHITE);         // TODO add your handling code here:
+    }//GEN-LAST:event_f_telefoneFocusGained
+
+    private void f_cnhFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_cnhFocusGained
+        f_cnh.setBackground(java.awt.Color.WHITE);         // TODO add your handling code here:
+    }//GEN-LAST:event_f_cnhFocusGained
+
+    private void f_cpfFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_cpfFocusGained
+        f_cpf.setBackground(java.awt.Color.WHITE);         // TODO add your handling code here:
+    }//GEN-LAST:event_f_cpfFocusGained
+
+    private void f_cidadeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_cidadeFocusGained
+        f_cidade.setBackground(java.awt.Color.WHITE);         // TODO add your handling code here:
+    }//GEN-LAST:event_f_cidadeFocusGained
+
+    private void f_emailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_emailFocusGained
+        f_email.setBackground(java.awt.Color.WHITE);         // TODO add your handling code here:
+    }//GEN-LAST:event_f_emailFocusGained
+
+    private void f_enderecoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_enderecoFocusGained
+        f_endereco.setBackground(java.awt.Color.WHITE);         // TODO add your handling code here:
+    }//GEN-LAST:event_f_enderecoFocusGained
+
+    private void f_bairroFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_bairroFocusGained
+        f_bairro.setBackground(java.awt.Color.WHITE);         // TODO add your handling code here:
+    }//GEN-LAST:event_f_bairroFocusGained
 
     /**
      * @param args the command line arguments

@@ -377,61 +377,67 @@ public class F_CadastroVeiculo extends javax.swing.JFrame {
         }
         else 
             return true;
-    }
+    }   
+        public boolean validarAno(String lancamento, String aquisicao){
+            if(Integer.parseInt(lancamento) <= Integer.parseInt(aquisicao))  
+                
+                return true;
+            else
+                JOptionPane.showMessageDialog(null, "O ano de aquisição é inferior ao ano de lançamento.");
+                return false;
+        }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         
         if(validar()){
-            
             if(!veiculoDAO.buscaPlaca(f_placa.getText())){
-                if(Integer.parseInt(f_anoLancamento.getText()) <= Integer.parseInt(f_anoAquisicao.getText())){
-                if(Integer.parseInt(f_quant.getValue().toString()) <= Integer.parseInt(f_capaci.getValue().toString())){
-                    Veiculo v = new Veiculo();
-                    v.setMarca(f_marca.getText().trim());
-                    v.setModelo(f_modelo.getText().trim());
-                    v.setPlaca(f_placa.getText());
-                    v.setCor(f_cor.getText().trim());
-                    v.setAnoLancamento(Integer.parseInt(f_anoLancamento.getText()));
-                    v.setAnoAquisicao(Integer.parseInt(f_anoAquisicao.getText()));
+                if(validarAno(f_anoLancamento.getText(), f_anoAquisicao.getText())){
+                    if(Integer.parseInt(f_quant.getValue().toString()) <= Integer.parseInt(f_capaci.getValue().toString())){
+                        Veiculo v = new Veiculo();
+                        v.setMarca(f_marca.getText().trim());
+                        v.setModelo(f_modelo.getText().trim());
+                        v.setPlaca(f_placa.getText());
+                        v.setCor(f_cor.getText().trim());
+                        v.setAnoLancamento(Integer.parseInt(f_anoLancamento.getText()));
+                        v.setAnoAquisicao(Integer.parseInt(f_anoAquisicao.getText()));
         
-                    int tipoComb = Combo_TipoComb.getSelectedIndex();
-                    if(tipoComb == 0)
-                        v.setTipoComb("Gasolina");
-                    else if(tipoComb == 1)
-                        v.setTipoComb("Álcool");
-                    else if(tipoComb == 2)
-                        v.setTipoComb("Flex");
+                        int tipoComb = Combo_TipoComb.getSelectedIndex();
+                        if(tipoComb == 0)
+                            v.setTipoComb("Gasolina");
+                        else if(tipoComb == 1)
+                            v.setTipoComb("Álcool");
+                        else if(tipoComb == 2)
+                            v.setTipoComb("Flex");
         
-                    v.setQuantComb(Integer.parseInt(f_quant.getValue().toString()));
+                        v.setQuantComb(Integer.parseInt(f_quant.getValue().toString()));
         
-                    if(CheckBox_GPS.isSelected() && CheckBox_Cadeirinha.isSelected()){
-                        v.setAcessorios("GPS e Cadeirinha para Bebê");
-                    } else if(CheckBox_GPS.isSelected()){
-                        v.setAcessorios("GPS");
-                    } else if(CheckBox_Cadeirinha.isSelected()){
-                    v.setAcessorios("Cadeirinha para Bebê");
-                    } else {
-                        v.setAcessorios("Nenhum acessório no veículo");
-                    }
+                        if(CheckBox_GPS.isSelected() && CheckBox_Cadeirinha.isSelected()){
+                            v.setAcessorios("GPS e Cadeirinha para Bebê");
+                        } else if(CheckBox_GPS.isSelected()){
+                            v.setAcessorios("GPS");
+                        } else if(CheckBox_Cadeirinha.isSelected()){
+                        v.setAcessorios("Cadeirinha para Bebê");
+                        } else {
+                            v.setAcessorios("Nenhum acessório no veículo");
+                        }
         
-                    v.setObservacao(f_observacao.getText().trim());
-                    v.setCapacidadeTanque(Integer.parseInt(f_capaci.getValue().toString()));
-                    v.setIdAdmin(idAdmin);
-                    VeiculoDAO veiculo = new VeiculoDAO();
-                    veiculo.create(v);
-                    dispose();
-                    } else {
-                        JOptionPane.showMessageDialog(null,"O ano de lançamento é inferior ao ano de aquisição");
-                    }
-                    } else {
-                        JOptionPane.showMessageDialog(null, "A quantidade de combustível no tanque é superior a sua capacidade");
-                    }
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Um veículo já se encontra cadastrado no sistema sob essa mesma placa!");                  
-                    }
-                } else {
-                JOptionPane.showMessageDialog(null, "Há campos não preenchidos!");           
+                        v.setObservacao(f_observacao.getText().trim());
+                        v.setCapacidadeTanque(Integer.parseInt(f_capaci.getValue().toString()));
+                        v.setIdAdmin(idAdmin);
+                        VeiculoDAO veiculo = new VeiculoDAO();
+                        veiculo.create(v);
+                        dispose();
+                        } 
+                        } else {
+                            JOptionPane.showMessageDialog(null, "A quantidade de combustível no tanque é superior a sua capacidade");
+                        }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Um veículo já se encontra cadastrado no sistema sob essa mesma placa!");                  
+                        }
+        } else {
+            JOptionPane.showMessageDialog(null, "Há campos não preenchidos!");
         }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void CheckBox_CadeirinhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBox_CadeirinhaActionPerformed
@@ -449,21 +455,21 @@ public class F_CadastroVeiculo extends javax.swing.JFrame {
 
     private void f_marcaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_marcaFocusLost
         // TODO add your handling code here:
-        if(f_marca.getText().equals("")){
+        if(f_marca.getText().trim().equals("")){
             f_marca.setBackground(java.awt.Color.getHSBColor(0, 79, 66));
         }
     }//GEN-LAST:event_f_marcaFocusLost
 
     private void f_modeloFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_modeloFocusLost
         // TODO add your handling code here:
-        if(f_modelo.getText().equals("")){
+        if(f_modelo.getText().trim().equals("")){
             f_modelo.setBackground(java.awt.Color.getHSBColor(0, 79, 66));
         }
     }//GEN-LAST:event_f_modeloFocusLost
 
     private void f_corFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_corFocusLost
         // TODO add your handling code here:
-        if(f_cor.getText().equals("")){
+        if(f_cor.getText().trim().equals("")){
             f_cor.setBackground(java.awt.Color.getHSBColor(0, 79, 66));
         }        
     }//GEN-LAST:event_f_corFocusLost

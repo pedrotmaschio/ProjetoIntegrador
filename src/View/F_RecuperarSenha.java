@@ -85,8 +85,24 @@ public class F_RecuperarSenha extends javax.swing.JFrame {
         });
 
         f_senha1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        f_senha1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                f_senha1FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                f_senha1FocusLost(evt);
+            }
+        });
 
         f_senha2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        f_senha2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                f_senha2FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                f_senha2FocusLost(evt);
+            }
+        });
         f_senha2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 f_senha2ActionPerformed(evt);
@@ -94,11 +110,27 @@ public class F_RecuperarSenha extends javax.swing.JFrame {
         });
 
         f_CNPJ.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        f_CNPJ.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                f_CNPJFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                f_CNPJFocusLost(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Data de Nascimento:");
 
         f_nascimento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        f_nascimento.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                f_nascimentoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                f_nascimentoFocusLost(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("fornecer algumas informações.");
@@ -190,6 +222,49 @@ public class F_RecuperarSenha extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Não há Administrador cadastrado sob esse CNPJ!");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void f_CNPJFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_CNPJFocusLost
+        if(f_CNPJ.getText().equals("  .   .   /    -  ")){
+            f_CNPJ.setBackground(java.awt.Color.getHSBColor(0, 79, 66));
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_f_CNPJFocusLost
+
+    private void f_nascimentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_nascimentoFocusLost
+        if(f_nascimento.getText().equals("  /  /    ")){
+            f_nascimento.setBackground(java.awt.Color.getHSBColor(0, 79, 66));
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_f_nascimentoFocusLost
+
+    private void f_CNPJFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_CNPJFocusGained
+        f_CNPJ.setBackground(java.awt.Color.WHITE);         // TODO add your handling code here:
+    }//GEN-LAST:event_f_CNPJFocusGained
+
+    private void f_nascimentoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_nascimentoFocusGained
+        f_nascimento.setBackground(java.awt.Color.WHITE);         // TODO add your handling code here:
+    }//GEN-LAST:event_f_nascimentoFocusGained
+
+    private void f_senha1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_senha1FocusLost
+        String senha1 = new String(f_senha2.getPassword());
+        if(senha1.equals("")){
+            f_nascimento.setBackground(java.awt.Color.getHSBColor(0, 79, 66));
+            
+        }              // TODO add your handling code here:
+    }//GEN-LAST:event_f_senha1FocusLost
+
+    private void f_senha2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_senha2FocusLost
+        if(f_senha2.getPassword().equals("")){
+            f_nascimento.setBackground(java.awt.Color.getHSBColor(0, 79, 66));
+        }         // TODO add your handling code here:
+    }//GEN-LAST:event_f_senha2FocusLost
+
+    private void f_senha1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_senha1FocusGained
+        f_senha1.setBackground(java.awt.Color.WHITE);         // TODO add your handling code here:
+    }//GEN-LAST:event_f_senha1FocusGained
+
+    private void f_senha2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_senha2FocusGained
+        f_senha2.setBackground(java.awt.Color.WHITE);     
+        // TODO add your handling code here:
+    }//GEN-LAST:event_f_senha2FocusGained
 
     /**
      * @param args the command line arguments

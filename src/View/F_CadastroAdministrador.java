@@ -96,14 +96,51 @@ public class F_CadastroAdministrador extends javax.swing.JFrame {
         jLabel9.setText("Senha:");
 
         f_nome.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        f_nome.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                f_nomeFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                f_nomeFocusLost(evt);
+            }
+        });
 
         f_nomeCompanhia.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        f_nomeCompanhia.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                f_nomeCompanhiaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                f_nomeCompanhiaFocusLost(evt);
+            }
+        });
 
         f_endereco.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        f_endereco.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                f_enderecoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                f_enderecoFocusLost(evt);
+            }
+        });
 
         f_email.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        f_email.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                f_emailFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                f_emailFocusLost(evt);
+            }
+        });
 
         f_senha.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        f_senha.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                f_senhaFocusLost(evt);
+            }
+        });
 
         jButton1.setBackground(new java.awt.Color(21, 190, 4));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -115,8 +152,24 @@ public class F_CadastroAdministrador extends javax.swing.JFrame {
         });
 
         f_nascimento.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        f_nascimento.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                f_nascimentoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                f_nascimentoFocusLost(evt);
+            }
+        });
 
         f_CNPJ.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        f_CNPJ.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                f_CNPJFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                f_CNPJFocusLost(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -228,6 +281,70 @@ public class F_CadastroAdministrador extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Informe um CNPJ válido!");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void f_nomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_nomeFocusLost
+        if(f_nome.getText().trim().equals("")){
+            f_nome.setBackground(java.awt.Color.getHSBColor(0, 79, 66));
+        }         // TODO add your handling code here:
+    }//GEN-LAST:event_f_nomeFocusLost
+
+    private void f_CNPJFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_CNPJFocusLost
+        if(f_CNPJ.getText().equals("  .   .   /    -  ")){
+            f_CNPJ.setBackground(java.awt.Color.getHSBColor(0, 79, 66));
+        }         // TODO add your handling code here:
+    }//GEN-LAST:event_f_CNPJFocusLost
+
+    private void f_nascimentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_nascimentoFocusLost
+        if(f_nascimento.getText().equals("  /  /    ")){
+            f_nascimento.setBackground(java.awt.Color.getHSBColor(0, 79, 66));
+        }         // TODO add your handling code here:
+    }//GEN-LAST:event_f_nascimentoFocusLost
+
+    private void f_nomeCompanhiaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_nomeCompanhiaFocusLost
+        if(f_nomeCompanhia.getText().trim().equals("")){
+            f_nomeCompanhia.setBackground(java.awt.Color.getHSBColor(0, 79, 66));
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_f_nomeCompanhiaFocusLost
+
+    private void f_enderecoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_enderecoFocusLost
+        if(f_endereco.getText().trim().equals("")){
+            f_endereco.setBackground(java.awt.Color.getHSBColor(0, 79, 66));
+        }          // TODO add your handling code here:
+    }//GEN-LAST:event_f_enderecoFocusLost
+
+    private void f_emailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_emailFocusLost
+        if(f_email.getText().trim().equals("")){
+            f_email.setBackground(java.awt.Color.getHSBColor(0, 79, 66));
+        }          // TODO add your handling code here:
+    }//GEN-LAST:event_f_emailFocusLost
+
+    private void f_senhaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_senhaFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_f_senhaFocusLost
+
+    private void f_nomeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_nomeFocusGained
+        f_nome.setBackground(java.awt.Color.WHITE);        // TODO add your handling code here:
+    }//GEN-LAST:event_f_nomeFocusGained
+
+    private void f_CNPJFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_CNPJFocusGained
+        f_CNPJ.setBackground(java.awt.Color.WHITE);        // TODO add your handling code here:
+    }//GEN-LAST:event_f_CNPJFocusGained
+
+    private void f_nascimentoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_nascimentoFocusGained
+        f_nascimento.setBackground(java.awt.Color.WHITE);        // TODO add your handling code here:
+    }//GEN-LAST:event_f_nascimentoFocusGained
+
+    private void f_nomeCompanhiaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_nomeCompanhiaFocusGained
+        f_nomeCompanhia.setBackground(java.awt.Color.WHITE);        // TODO add your handling code here:
+    }//GEN-LAST:event_f_nomeCompanhiaFocusGained
+
+    private void f_enderecoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_enderecoFocusGained
+        f_endereco.setBackground(java.awt.Color.WHITE);        // TODO add your handling code here:
+    }//GEN-LAST:event_f_enderecoFocusGained
+
+    private void f_emailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_emailFocusGained
+        f_email.setBackground(java.awt.Color.WHITE);        // TODO add your handling code here:
+    }//GEN-LAST:event_f_emailFocusGained
 
     /**
      * @param args the command line arguments
