@@ -370,10 +370,18 @@ public class F_EditarVeiculo extends javax.swing.JFrame {
         else 
             return true;
     }
+        public boolean validarAno(String lancamento, String aquisicao){
+            if(Integer.parseInt(lancamento) <= Integer.parseInt(aquisicao))  
+                
+                return true;
+            else
+                JOptionPane.showMessageDialog(null, "O ano de aquisição é inferior ao ano de lançamento.");
+                return false;
+        }    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         if(validar()){
-                if(Integer.parseInt(f_anoLancamento.getText().trim()) <= Integer.parseInt(f_anoAquisicao.getText().trim())){
+                if(validarAno(f_anoLancamento.getText(), f_anoAquisicao.getText())){
                     if(Integer.parseInt((f_quant.getValue().toString())) <= (Integer.parseInt(f_capaci.getValue().toString()))){
                         VeiculoDAO veiculoDAO = new VeiculoDAO();
                         Veiculo v = new Veiculo();
@@ -410,14 +418,14 @@ public class F_EditarVeiculo extends javax.swing.JFrame {
                         veiculoDAO.editar(v);
                         dispose();
                     } else {
-                        JOptionPane.showMessageDialog(null,"O ano de lançamento é inferior ao ano de aquisição");
+                        JOptionPane.showMessageDialog(null, "A quantidade de combustível no tanque é superior a sua capacidade");               
                     }
                     } else {
-                        JOptionPane.showMessageDialog(null, "A quantidade de combustível no tanque é superior a sua capacidade");
+                        
                     }
                     
                 } else {
-                JOptionPane.showMessageDialog(null, "Há campos não preenchidos!");           
+                    JOptionPane.showMessageDialog(null, "Há campos não preenchidos!");           
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed

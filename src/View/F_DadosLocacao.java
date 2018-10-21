@@ -5,6 +5,7 @@
  */
 package View;
 
+import java.text.DateFormat;
 import DAO.AdministradorDAO;
 import DAO.LocatarioDAO;
 import DAO.VeiculoDAO;
@@ -13,9 +14,16 @@ import Model.Locacao;
 import Model.Locatario;
 import Model.Veiculo;
 import java.text.SimpleDateFormat;
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import javax.swing.JOptionPane;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.text.MaskFormatter;
 
 /**
@@ -30,7 +38,7 @@ public class F_DadosLocacao extends javax.swing.JFrame {
     public void mascaraCampos(){
         try {
             MaskFormatter mascaraData = new MaskFormatter("##/##/####");
-            mascaraData.install(f_dataDevolucao);
+            //mascaraData.install(f_dataDevolucao);
         }catch(Exception ex){
             throw new RuntimeException(ex);
         }
@@ -42,6 +50,11 @@ public class F_DadosLocacao extends javax.swing.JFrame {
        
         initComponents();
         mascaraCampos();
+        SpinnerNumberModel a = new SpinnerNumberModel();
+        a.setMinimum(1);
+        a.setMaximum(30);
+        a.setValue(1);
+        spinner_dias.setModel(a);
         this.idAdmin = idAdmin;
         this.idVeiculo = idVeiculo;
         this.idLocatario = idLocatario;
@@ -60,7 +73,6 @@ public class F_DadosLocacao extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         f_marca = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
-        f_dataDevolucao = new javax.swing.JFormattedTextField();
         jLabel12 = new javax.swing.JLabel();
         f_modelo = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -119,6 +131,10 @@ public class F_DadosLocacao extends javax.swing.JFrame {
         f_tipoComb = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        spinner_dias = new javax.swing.JSpinner();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        f_dataDevolucao = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Dados da Locação");
@@ -172,7 +188,7 @@ public class F_DadosLocacao extends javax.swing.JFrame {
         });
 
         jLabel27.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel27.setText("Data de Devolução:");
+        jLabel27.setText("Período de Locação:");
 
         jLabel24.setText("Dados da Locação");
 
@@ -319,6 +335,19 @@ public class F_DadosLocacao extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Dados da Locação");
 
+        spinner_dias.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                spinner_diasStateChanged(evt);
+            }
+        });
+
+        jLabel31.setText("dias");
+
+        jLabel32.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel32.setText("Data de Devolução:");
+
+        f_dataDevolucao.setEditable(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -452,10 +481,17 @@ public class F_DadosLocacao extends javax.swing.JFrame {
                                         .addGap(173, 173, 173)
                                         .addComponent(f_dataSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(173, 173, 173)
-                                .addComponent(jLabel27)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
-                        .addComponent(f_dataDevolucao, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(536, 536, 536))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel27)
+                                    .addComponent(jLabel32))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(spinner_dias, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel31))
+                            .addComponent(f_dataDevolucao))
+                        .addGap(607, 607, 607))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -575,11 +611,14 @@ public class F_DadosLocacao extends javax.swing.JFrame {
                     .addComponent(jLabel25)
                     .addComponent(f_dataSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel27)
-                    .addComponent(f_dataDevolucao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(spinner_dias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel31))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel26)
-                    .addComponent(f_horarioSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(f_horarioSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel32)
+                    .addComponent(f_dataDevolucao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addComponent(jButton1)
                 .addGap(196, 196, 196))
@@ -596,37 +635,110 @@ public class F_DadosLocacao extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_f_horarioSaidaActionPerformed
 
+
+/*public static boolean isDateValid(String date) 
+{
+    boolean retorno = false;
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Calendar c = Calendar.getInstance();
+        c.set(Integer.parseInt(date.substring(6, 10)), Integer.parseInt(date.substring(3, 5)), Integer.parseInt(date.substring(0, 2)));
+        try {
+            c.setTime(formatter.parse(date));
+        }catch(Exception ex){
+            throw new RuntimeException(ex);
+        }
+        
+        LocalDate.of(c.get(Calendar.YEAR), c.get(Calendar.MONTH)+1, c.get(Calendar.DAY_OF_MONTH));
+       
+    return retorno;
+} */
+    public boolean isValidDate(String date){
+        boolean retorno = false;
+    try {
+            GregorianCalendar gc = new GregorianCalendar();
+            gc.setLenient(false);        // must do this
+            gc.set(GregorianCalendar.YEAR, Integer.parseInt(date.substring(6, 10)) );
+            gc.set(GregorianCalendar.MONTH, Integer.parseInt(date.substring(3, 5))+1);// invalid month
+            gc.set(GregorianCalendar.DATE, Integer.parseInt(date.substring(0, 2)));
+
+            gc.getTime(); // exception thrown here
+            retorno = true;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    return retorno;
+    }
+    public boolean validar(){
+        Calendar c1 = Calendar.getInstance();
+        Calendar c2 = Calendar.getInstance(); 
+        
+        Date date1 = new Date();
+        
+        
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            c1.setTime(formatter.parse(f_dataSaida.getText()));
+            
+        } catch(Exception ex){
+            throw new RuntimeException();
+        }
+      
+        try {
+            c2.setTime(formatter.parse(f_dataDevolucao.getText()));
+            
+        } catch(Exception ex){
+            throw new RuntimeException();
+        }        
+        long saida = c1.getTimeInMillis();
+        long devolucao = c2.getTimeInMillis();
+        if(devolucao > saida){
+            return true;            
+        } else {
+            return false;
+        }
+        
+    }
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        dispose();
-        Locacao l = new Locacao();
-        l.setCapaciTanque(Double.parseDouble(f_capacidade.getText()));
-        l.setCnhLocatario(f_cnh.getText());
-        l.setCnpjLocadora(f_cnpj.getText());
-        l.setCor(f_cor.getText());
-        l.setCpfLocatario(f_cpf.getText());
-        l.setDataDevolucao(f_dataDevolucao.getText());
-        l.setDataSaida(f_dataSaida.getText());
-        l.setEmailLocadora(f_email.getText());
-        l.setEmailLocatario(f_emailLocatario.getText());
-        l.setEnderecoLocadora(f_enderecoLocadora.getText());
-        l.setEnderecoLocatario(f_cidade.getText());
-        l.setHorarioSaida(f_horarioSaida.getText());
-        l.setMarca(f_marca.getText());
-        l.setModelo(f_modelo.getText());
-        l.setNascLocatario(f_dataNascimento.getText());
-        l.setNomeLocadora(f_nomeLocadora.getText());
-        l.setNomeLocatario(f_nomeLocatario.getText());
-        l.setQuantTanque(Double.parseDouble(f_quantComb.getText()));
-        l.setTelefoneLocatario(f_telefoneLocatario.getText());
-        l.setTipoComb(f_tipoComb.getText());
-        l.setAnoLancamento(f_lancamento.getText());
-        l.setCidadeLocatario(f_cidade.getText());
-        l.setBairroLocatario(f_bairro.getText());
-        l.setNumeroLocatario(f_numeroLocatario.getText());
-        l.setPlaca(f_placa.getText());
-        F_Contrato contrato = new F_Contrato(l, idAdmin, idVeiculo);
-        contrato.setVisible(true);
+    if(isValidDate(f_dataDevolucao.getText().trim())){    
+        if(validar()){
+            dispose();
+            Locacao l = new Locacao();
+            l.setCapaciTanque(Double.parseDouble(f_capacidade.getText()));
+            l.setCnhLocatario(f_cnh.getText());
+            l.setCnpjLocadora(f_cnpj.getText());
+            l.setCor(f_cor.getText());
+            l.setCpfLocatario(f_cpf.getText());
+            l.setDataDevolucao(f_dataDevolucao.getText());
+            l.setDataSaida(f_dataSaida.getText());
+            l.setEmailLocadora(f_email.getText());
+            l.setEmailLocatario(f_emailLocatario.getText());
+            l.setEnderecoLocadora(f_enderecoLocadora.getText());
+            l.setEnderecoLocatario(f_cidade.getText());
+            l.setHorarioSaida(f_horarioSaida.getText());
+            l.setMarca(f_marca.getText());
+            l.setModelo(f_modelo.getText());
+            l.setNascLocatario(f_dataNascimento.getText());
+            l.setNomeLocadora(f_nomeLocadora.getText());
+            l.setNomeLocatario(f_nomeLocatario.getText());
+            l.setQuantTanque(Double.parseDouble(f_quantComb.getText()));
+            l.setTelefoneLocatario(f_telefoneLocatario.getText());
+            l.setTipoComb(f_tipoComb.getText());
+            l.setAnoLancamento(f_lancamento.getText());
+            l.setCidadeLocatario(f_cidade.getText());
+            l.setBairroLocatario(f_bairro.getText());
+            l.setNumeroLocatario(f_numeroLocatario.getText());
+            l.setPlaca(f_placa.getText());
+            F_Contrato contrato = new F_Contrato(l, idAdmin, idVeiculo);
+            contrato.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "A data de devolução deve ser posterior a data de aquisição!");
+        }
+        } else {
+            JOptionPane.showMessageDialog(null, "Informe uma data válida!");
+        } 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void f_dataSaidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_f_dataSaidaActionPerformed
@@ -636,6 +748,29 @@ public class F_DadosLocacao extends javax.swing.JFrame {
     private void f_quantCombActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_f_quantCombActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_f_quantCombActionPerformed
+
+    private void spinner_diasStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spinner_diasStateChanged
+        Calendar c = Calendar.getInstance();
+        DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        String saida = f_dataSaida.getText();
+        c.set(Integer.parseInt(saida.substring(6, 10)), Integer.parseInt(saida.substring(3, 5)), Integer.parseInt(saida.substring(0, 2)));
+        int diaint = Integer.parseInt(saida.substring(6, 10));
+        int mesint = Integer.parseInt(saida.substring(3, 5));
+        int anoint = Integer.parseInt(saida.substring(0, 2));
+        
+        int dias = Integer.parseInt(spinner_dias.getValue().toString());
+        LocalDate date = LocalDate.of(diaint, mesint, anoint).plusDays(dias);
+        
+        
+        String dia = String.valueOf(date.getDayOfMonth());
+        String mes = String.valueOf(date.getMonthValue());
+        String ano = String.valueOf(date.getYear());
+        String data = dia + "/" +  mes + "/" + ano;
+
+        
+        f_dataDevolucao.setText(data);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_spinner_diasStateChanged
     public void preencheLocacao(int idLocatario, int idVeiculo, int idAdmin){
         // Administrador
         Administrador a = new Administrador();
@@ -737,7 +872,7 @@ public class F_DadosLocacao extends javax.swing.JFrame {
     private javax.swing.JTextField f_cnpj;
     private javax.swing.JTextField f_cor;
     private javax.swing.JTextField f_cpf;
-    private javax.swing.JFormattedTextField f_dataDevolucao;
+    private javax.swing.JTextField f_dataDevolucao;
     private javax.swing.JTextField f_dataNascimento;
     private javax.swing.JTextField f_dataSaida;
     private javax.swing.JTextField f_email;
@@ -782,6 +917,8 @@ public class F_DadosLocacao extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -792,5 +929,6 @@ public class F_DadosLocacao extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSpinner spinner_dias;
     // End of variables declaration//GEN-END:variables
 }

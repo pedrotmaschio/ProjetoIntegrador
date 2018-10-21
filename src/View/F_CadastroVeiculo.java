@@ -427,16 +427,19 @@ public class F_CadastroVeiculo extends javax.swing.JFrame {
                         VeiculoDAO veiculo = new VeiculoDAO();
                         veiculo.create(v);
                         dispose();
-                        } 
+                         
                         } else {
                             JOptionPane.showMessageDialog(null, "A quantidade de combustível no tanque é superior a sua capacidade");
                         }
                         } else {
-                            JOptionPane.showMessageDialog(null, "Um veículo já se encontra cadastrado no sistema sob essa mesma placa!");                  
-                        }
+                                             
+                        } 
+            }else {
+                JOptionPane.showMessageDialog(null, "Já existe um veículo cadastrado no sistema sob essa mesma placa.");
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "Há campos não preenchidos!");
-        }
+            JOptionPane.showMessageDialog(null, "Há campos não preenchidos!");     
+        }          
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

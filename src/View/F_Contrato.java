@@ -104,9 +104,9 @@ public class F_Contrato extends javax.swing.JFrame {
             } else {
                 url = seleciona.getSelectedFile().getAbsolutePath();
             }
-                
-            pdf.criarPdf((url+"\\Comprovante.pdf"), l);
-            JOptionPane.showMessageDialog(null, "Contrato gerado com sucesso!");
+            String locatario = l.getNomeLocatario();
+            pdf.criarPdf((url+"\\" + locatario + ".pdf"), l);
+            JOptionPane.showMessageDialog(null, "Comprovante gerado com sucesso!");
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null, "Ocorreu um erro ao gerar contrato!");
             throw new RuntimeException(ex);
