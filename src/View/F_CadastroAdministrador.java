@@ -251,10 +251,23 @@ public class F_CadastroAdministrador extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    public boolean validar(){
+        String nome = f_nome.getText().trim();
+        String nascimento = f_nascimento.getText();
+        String nomeCompanhia = f_nomeCompanhia.getText().trim();
+        String endereco = f_endereco.getText().trim();
+        String senha = new String(f_senha.getPassword());
+        String cnpj = f_CNPJ.getText();
+        
+        if(nome.equals("") || nascimento.equals("  /  /    ") ||nomeCompanhia.equals("") || endereco.equals("") || senha.equals("") || cnpj.equals("  .   .   /    -  ")){
+            return false;
+        } else {
+            return true;
+        }
+    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-      
+    if(validar()){
         if(Validacao.validarCNPJ(f_CNPJ.getText())){
             if(!administradorDAO.buscaCNPJ(f_CNPJ.getText())){
                 if(Validacao.validarEmail(f_email.getText().trim())){
@@ -280,6 +293,9 @@ public class F_CadastroAdministrador extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Informe um CNPJ válido!");
         }
+    } else {
+        JOptionPane.showMessageDialog(null, "Há campos não preenchidos!");
+    }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void f_nomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_nomeFocusLost
