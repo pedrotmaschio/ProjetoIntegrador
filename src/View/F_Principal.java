@@ -5,6 +5,8 @@
  */
 package View;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Pedro Maschio
@@ -155,7 +157,9 @@ public class F_Principal extends javax.swing.JFrame {
 
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
         // TODO add your handling code here:
-        System.exit(0);
+        if(JOptionPane.showConfirmDialog(null, "Tem certeza que deseja sair?") == JOptionPane.OK_OPTION)
+            System.exit(0);
+        
     }//GEN-LAST:event_jMenu1MouseClicked
 
     /**
